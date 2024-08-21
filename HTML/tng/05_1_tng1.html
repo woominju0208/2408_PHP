@@ -13,39 +13,44 @@
     <ul>
     <li>
     <label for="id">아이디</label>
-    <input type="text" id="id" placeholder="4자~10자 사이, 공백없이" required> </li>
+    <input type="text" id="id" name="id" minlength="4" maxlength="10" placeholder="4자 ~ 10자 사이, 공백없이" autofocus required> </li>
     <li>
     <label for="e-mail">이메일</label>
-    <input type="e-mail" id="e-mail" required> </li>
+    <input type="e-mail" id="e-mail"  name="email" required> </li>
     <li>
     <label for="pw">비밀번호</label>
-    <input type="password" id="pw" placeholder="문자와 숫자, 특수 기호 포함"  required> </li>
+    <input type="password" id="pw" name="pw" placeholder="문자와 숫자, 특수 기호 포함"  required> </li>
     <li>
-        <label for="pw">비밀번호 확인</label>
-        <input type="password" id="pw" required> </li> 
+        <label for="pwcheck">비밀번호 확인</label>
+        <input type="password" id="pwcheck" name="pwcheck" required> </li> 
     <li>
-        <label>가입 경로</label>  
-        <select name="가입 경로">
+        <label for="path">가입 경로</label>  
+        <select name="path" id="path" name="path">
+            <!-- select 는 굳이 id경로가 필요하지 않는다.
+                select 여러 개 추가시 select name을 바꿔주고 구성은 같다.  -->
     <option value="0">기타</option>
     <option value="1">기타</option> 
     <option value="2">기타</option> </li> 
     </select>
     <li>
         <label for="memo">메모</label>
-        <textarea id="memo" cols="40" rows="4" placeholder="남길 말씀이 있다면 여기에"></textarea>
+        <textarea name="memo" id="memo" cols="40" rows="4" placeholder="남길 말씀이 있다면 여기에"></textarea>
     </li>
     </ul>
    </fieldset> 
    <fieldset>
     <legend>이벤트와 새로운 소식</legend>
-    <input type="radio" name="event" id="send mail">
-    <label for="mail">메일 수신</label>
-    <input type="radio" name="event" id="not send mail">
-    <label for="mail">메일 수신 안 함</label>
+    <input type="radio" name="event" id="yes">
+    <label for="yes">메일 수신</label>
+    <input type="radio" name="event" id="no" checked>
+    <label for="no">메일 수신 안 함</label>
    </fieldset>
-<button type="submit">가입하기</button>
-<button type="reset">취소</button>
+     <button type="submit">가입하기</button>
+     <!-- <button type="reset">취소</button> -->
+     <a href="./04_3_tng3.html"><button type="button">취소</button></a>
 
+<!-- 서버연동시(php로 연동시) 항상 name이란 이름들을 정해주어야 한다.
+     각각 다른 이름으로 정해주어야 한다. -->
 </form>
 </body>
 </html>
