@@ -1,0 +1,97 @@
+/* 글자색 지정 */
+.h2-color {
+    /*색상명으로 지정*/
+    color: red;
+}
+
+/* 16 진수로 색상 지정 */
+.h2-color {
+    color: #ff0000
+}
+
+/* rgb방식으로 색상 지정  */
+.h2-color {
+    color: rgb(255, 0, 0);
+}
+
+/* RGBA 방식으로 색상 지정 */
+/* A값이 1에서 밑으로 갈수록 투명해진다. */
+.h2-color {
+    color: rgb(255, 0, 0, 1);
+}
+
+/* HSLA 방식으로 색상 지정 */
+.h2-color {
+    color: hsl(0, 100%, 50%);
+}
+
+/* 선으로 텍스트를 꾸미는 속성 */
+.td-none {
+    text-decoration: none;
+}
+
+.td-underline {
+    text-decoration: underline;
+}
+
+.td-through {
+    text-decoration: line-through;
+}
+
+/* 정렬 */
+/* 왼쪽부터 시작 */
+.aline-left {
+    text-align: left;
+}
+
+/* 오른쪽부터 시작 */
+
+.aline-right {
+    text-align: right;
+}
+
+/* 중앙정렬 하는 방법 */
+
+.aline-center {
+    text-align: center;
+}
+
+/* 중앙정렬 하는 방법1 */
+.center {
+    background-color: darkgray;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+}
+
+/* 영어 대소문자 변경 */
+/* 첫글자를 대문자로 변경 */
+.transform {
+    text-transform: capitalize;
+}
+
+/* 전부 대문자로 변경 */
+.transform {
+    text-transform: uppercase;
+}
+
+/* 전부 소문자로 변경 */
+.transform {
+    text-transform: lowercase;
+}
+
+/* 자간 */
+.letter-spacing {
+    letter-spacing: 10px;
+}
+
+/* 단어사이에 간격 */
+.word-spacing {
+    word-spacing: 20px;
+}
+
+/* 그림자 효과 */
+.shadow {
+    /* "가로위치, 세로위치, 그림자 크기, 색상" */
+    text-shadow: 2px 2px 3px #ff0000 ;
+}

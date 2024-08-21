@@ -1,0 +1,21 @@
+.foods1 {
+    /* 불릿없음 */
+    list-style-type: none; 
+    /* 숫자 */
+    list-style-type: decimal;
+    /* 영어 */
+    list-style-type: lower-alpha;
+}
+
+.foods2 {
+    /* 목록의 들여쓰기 설정 */
+    list-style-position: inside;
+    /* 들여쓰기 미설정 */
+    list-style-position: outside;
+}
+
+/* 불릿 이미지 설정 */
+.foods3 {
+    /* list-style-image: url('이미지 파일위치'); */
+    list-style-image: url(../image/icon_moon.png);
+}

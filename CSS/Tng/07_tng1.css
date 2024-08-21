@@ -1,0 +1,13 @@
+.list {
+    list-style-type: none;
+    line-height: 2rem;
+    /* 줄간격 단위 꼭 넣어주기! */
+}
+
+
+.text {
+    font-size: 1.5em;
+    color: #ad3000;
+    font-weight: 900;
+}
+
