@@ -1,0 +1,66 @@
+main, div {
+    padding: 20px;
+}
+
+main {
+    background-color: green;
+    width: 300px;
+    height: 1500px;
+}
+
+
+/* position 속성 : HTML 요소를 배치하는 방법을 지정
+    ** 속성 값**
+        -static : 기본값으로 일반적인 몬서의 흐름에 맞춰 배치
+        -relative :
+            static위치에서 top,right,bottom,left 와 같은 속성에 의한 상대적인 위치값을 지정
+            그외에는 static과 같음 
+        -absoulte :
+            요소가 문서의 일반적인 흐름을 따르지 않게 함
+            relative값을 사용한 상위 요소 기준을 위치값을 지정
+        -fixed : 뷰 포트를 기준으로 위치값을 지정
+        -stickly :
+            요소가 html 문서안에서 static와 같이 일반적은 흐름을 따라가다가
+            스크롤 위치가 임계점에 이르면 화면에 고정할 수 있는 속성
+            top속성만 적용
+            자신의 바로 위의 부모요소 안에서만 적용
+        */
+.div-static {
+    background-color: gray;
+    position: static;
+}
+
+.div-relative {
+    background-color: aqua;
+    position: relative;
+    /* top: 20px;
+    left: 20px; */
+}
+
+.div-relative-absolute {
+    background-color: antiquewhite;
+    position: relative;
+}
+
+.div-absolute {
+    background-color: blueviolet;
+    position: absolute;
+    top: 0;
+}
+
+/* absolute 의 부모는 relative 이다. */
+
+.div-fixed {
+    background-color: cadetblue;
+    position: fixed;
+    right: 10%;
+    bottom: 10%;
+}
+/* %는 부모 기준 vw,vh는 뷰포트 기준 */
+
+.div-sticky {
+    background-color: chocolate;
+    position: sticky;
+    top: 0;
+}
+/* 메뉴바 고정 할때 사용 */

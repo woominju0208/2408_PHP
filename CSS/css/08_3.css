@@ -1,0 +1,53 @@
+div {
+    border: 1px solid #000000;
+    width: 400px;
+}
+
+/* margin 속성 : 외부 여백을 지정
+    > 1개 지정 : 4방향 지정 
+    > 2개 지정 : 첫번째 위아래 , 두번째 좌우
+    > 3개 지정 : 위 > 좌우 > 아래 순
+    > 4개 지정 : 위 > 우 > 아래 > 좌 순
+    > auto :마진을 자동으로 계산(중앙을 표시할때 사용)
+
+    마진 중첩
+        HTML 요소를 세로로 배치할 경우  margin끼리 만날 때,
+        margin 값이 큰쪽으로 겹쳐지는 현상
+        (가로로 배칠할 경우는 상관없습니다.
+    */
+
+h1, p {
+    border: 1px solid #000000;
+    width: 150px;
+    margin: 10px auto;  /* margin을 정중앙을 원할때 auto */
+}
+
+/* padding 속성 : 내부 여백을 지정
+    > 1개 지정 : 4방향 지정
+    > 2개 지정 : 첫번째 위아래, 두번째 좌우 지정
+    > 3개 지정 : 위> 좌우 > 아래 지정
+    > 4개 지정 : 위 > 우 > 아래 > 좌 지정
+     */
+
+.div-2 {
+    padding: 50px;
+}
+
+/* box-shadow
+    :박스모델에 그림자 효과
+        속성값 : 수평거리,수직거리,흐림정도,번짐정도,색상 (inset)
+            참조) inset은 설정시 안쪽으로 그림자가 생김 */
+
+.div-3,.div-4 {
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+}
+
+.div-3 {
+    box-shadow: 0px 0px 6px 2px #000000;
+}
+
+.div-4 {
+    box-shadow: 10px 10px 10px 10px #000000 inset;
+}

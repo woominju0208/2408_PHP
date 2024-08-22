@@ -1,0 +1,37 @@
+.div-img {   
+    width: 500px;
+    height: 500px;
+    /* background-image 주소를 한개 또는 두개까지 지정한다. */
+    background-image: url(../image/2020011501001679500132853.jpg);
+
+    /* content가 넘칠때 스크롤 생성 */
+    /* overflow: scroll; */
+
+    /* 배경 이미지 크기 설정
+        background-size : 배경 이미지 크기 설정
+        **속성 값**
+            -auto : 원본 크기 유지(기본값)
+            -contain:요소안에 배경이미지가 다 들어오도록 확대 및 축소
+            -cover: 요소를 모두 덮도록 이미지를 확대 및 축소
+            -px, em, rem : 하나의 값을 주어 너비를 지정,너비에 맞는 높이를 지정
+            -% : 이미지의 비율에 맞도록 조절
+            */
+    background-size: cover;
+
+    /* background-position : 배경 이미지의 초기 위치를 설정
+    **속성 값**
+        -키워드:top, left, right, bottom, center
+        -퍼센티지 :25%, 75%
+        -Edge offsets : bottom 30px right 50px
+    */
+    background-position: center;
+}
+
+
+.div-repeat {
+    width: 240px;
+    height: 240px;
+    background-image: url(../image/icon_moon.png);
+
+    background-repeat: round;
+}
