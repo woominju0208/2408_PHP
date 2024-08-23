@@ -1,0 +1,105 @@
+/* 
+    가상 선택자(Pseudo selector)
+    html 요소의 상태에 따라 선택해서 스타일을 지정하는 선택자
+    기본형태) 선택자:가상클래스명
+*/
+a:link {
+    /* 한번도 방문한적이 없는 링크 요소를 선택*/
+    color: red;
+}
+/*
+    한번이라도 방문했던 링크요소 선택
+*/
+a:visited {
+    color: rgb(58, 183, 58);
+}
+
+/* 마우스 커서가 올라가있는 요소를 선택 */
+a:hover, h1:hover,p:hover {
+    color: aqua;
+    /* display: none; */
+}
+
+/* 
+링크를 클릭하고 있는 요소를 선택*/
+a:active {
+    font-size: 5rem;
+}
+
+/* p {
+    display: none;
+} */
+
+h1:hover + p {
+    display: block;
+}
+
+/* 포커스가 적용되어 있는 요소를 선택 */
+input:focus {
+    border: 3px solid green;
+    outline: none;   /*input 태그의 기본 검은선을 없앰*/
+}
+
+input {
+    border-radius: 10px;
+}
+
+/* 체크된 상태의 input 요소를 모두 선택*/
+input:checked + label {
+    background-color: cadetblue;
+}
+
+/* 문서 내부링크의 현재 활성화 된 요소를 선택
+    선택된 요소로 이동한다 */
+#p1:target {
+    background-color: bisque;
+}
+
+#p2:target {
+    background-color: chocolate;
+}
+
+/* 해당 선택자의 요소를 제외한 나머지 요소에 스타일을 적용 */
+.container :not(p) {
+    color: red;
+}
+
+/* n번째 자식 요소에 스타일을 적용 */
+.container :nth-child(3) {
+    color: blue;
+}
+
+/* n번째 자식 요소부터 스타일을 적용
+    n일경우: 해당 자식 요소부터 스타일적용
+    -n일경우: 해당자식 까지 스타일 적용  */
+.container :nth-child(-n + 4) {
+    color: brown;
+}
+
+.container :nth-child(n + 2):nth-child(-n+4) {
+    color: rgb(255, 64, 96);
+}
+
+/* 짝수 또는 홀수 번째 자식 요소에 스타일 적용 */
+.container :nth-child(odd) {
+    background-color: green;
+}
+
+.container :nth-child(even) {
+    background-color: rgb(255, 196, 0);
+}
+
+/* 부모요소 내에서 특정 유형의 n번째 자식을 선택  */
+.container h3:nth-of-type(1) {
+    font-size: 2rem;
+    border: 1px solid#000;
+}
+
+.absolute {
+    width: 100px;
+    height: 100px;
+    border: 1px solid#000;
+    position: absolute;
+    top: 0;
+    left: 0;
+}

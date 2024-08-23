@@ -1,7 +1,12 @@
-img {
+.p1 {
     float: left;
 }
 
 .p2 {
+    float: right; 
+}
+
+
+.p3 {
     clear: both;
 }

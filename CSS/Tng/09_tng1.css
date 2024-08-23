@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.container {
+    width: 600px;
+    height: 900px;
+    border: 1px dotted#000000;
+    background-image: url(../image/2020011501001679500132853.jpg);
+    background-size: 500px;
+    background-position: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+
+.header {
+    text-align: center;
+}
+
+
+h1 {
+    background-color: #062e1e;
+    color: #fff;
+    margin: 30px;
+    padding: 25px;
+}
+
+h2 {
+    margin: 20px
+
+}
+
+h3 {
+    color: #ff0000;
+    font-weight: 900;
+    margin: 1.5em;
+}
+
+.list1 {
+    list-style-type: none;
+    line-height: 2em;
+    /* margin: 20px 20px 20px 30px; */
+    margin-left: 30px;
+}
+
+.list2 {
+    list-style-type: none;
+    line-height: 2em;
+    margin: 20px 20px 20px 30px;
+
+}
+/* margin-left, margin-right, margin-top, margin-bottom 주는거랑
+    margin: 20px(위) 20px(우측) 20px(아래) 20px(좌측) 이랑 똑같이 움직인다. */
+
+
+/* .div-img {
+    background-image: url(../image/2020011501001679500132853.jpg);
+    width: 100px;
+    height: 100px;
+    float: right;
+} */

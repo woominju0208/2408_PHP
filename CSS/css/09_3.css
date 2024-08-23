@@ -1,0 +1,30 @@
+div {
+    width: 200px;
+    height: 150px;
+    border: 1px solid#000;
+    margin: 10px;
+}
+
+.div-1 {
+    background: linear-gradient(
+       10deg , blue 10%,skyblue 30%,white,#0bffc6
+    );
+}
+/* 색 갯수의 제한은 없다. */
+/* %로 시작위치를 지정할수 있다. */
+
+/* 선형 그라데이션 : 직선을 따라 점진적으로 그라데이션 효과
+    liner-gradient() 함수
+    키워드 : to(방향으로 결정), deg(각도로 결정) */
+
+
+.div-2 {
+    background: radial-gradient(
+        circle at 90% 100%, blue, skyblue, #0bffc6
+    );
+}    
+
+/* 원형 그라데이션 : 직선을 따라 점진적으로 그라데이션 효과를 부여
+    radial-gradient() 함수
+    키워드 : circle(원형), ellipse(타원형)
+    (circle at 10% 10%, blue, skyblue) */

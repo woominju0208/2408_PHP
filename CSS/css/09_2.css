@@ -1,11 +1,11 @@
 .div-img {   
-    width: 500px;
-    height: 500px;
+    width: 250px;
+    height: 250px;
     /* background-image 주소를 한개 또는 두개까지 지정한다. */
     background-image: url(../image/2020011501001679500132853.jpg);
 
     /* content가 넘칠때 스크롤 생성 */
-    /* overflow: scroll; */
+    overflow: scroll;
 
     /* 배경 이미지 크기 설정
         background-size : 배경 이미지 크기 설정
@@ -24,7 +24,9 @@
         -퍼센티지 :25%, 75%
         -Edge offsets : bottom 30px right 50px
     */
-    background-position: center;
+    /* background-position: center; */
+
+    background-attachment: local;
 }
 
 
