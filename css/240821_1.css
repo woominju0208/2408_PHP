@@ -1,0 +1,14 @@
+.title {
+    text-shadow: 5px 5px 3px red;
+}
+.red {
+    color: #ff0000;
+}
+
+.item,.row-1to3 {
+    border: 1px solid #000;
+    background-color: cadetblue;
+}
+.row-1to3 {
+    grid-row: 1/3;
+}
