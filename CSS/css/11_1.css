@@ -1,0 +1,32 @@
+.ball {
+    width: 100px;
+    height: 100px;
+    background-color: deepskyblue;
+    border-radius: 50%;
+    animation: updown 2s infinite;
+    border-top: 5px dotted#dbdbdb;
+    border-bottom: 5px dotted#d8d8d8 ;
+    background-color: transparent;
+}
+
+.container {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+    top: 40px;
+    left: 25px;
+}
+
+@keyframes updown {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* 애니메이션은 animation 스타일과  @keyframes 을 같이 넣어줘야 한다. */
+

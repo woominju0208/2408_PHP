@@ -1,0 +1,78 @@
+.container {
+    background-color: grey;
+    display: grid;
+
+    /* 컬럼의 개수를 정하는 속성 */
+    /* fr: 비율단위 처음적은 50px을 빼고 나머지 크기를 n : n사이즈로 변경해준다. */
+    /* 설정한 아이템이 다 나오면 나머지는 contaner의 배경 빈공간으로 보인다. */
+    grid-template-columns: 50px 1fr 1fr 1fr;
+
+    /* 로우의 갯수를 정하는 속성 */
+    grid-template-rows: 1fr 1fr 2fr;
+}
+
+.item {
+    background-color: cornflowerblue;
+    border: 1px solid #000;
+}
+
+.container2 {
+    display: grid;
+    background-color: grey;
+
+    /* repeat(설정하고 싶은 갯수, nfr) : 값이 반복되는 경우, 줄여서 자동으로 그리드셀을 생성 */
+    grid-template-columns: repeat(4, 1fr);   /* = grid-template-columns: 1fr 1fr 1fr 1fr; */
+
+    /* minmax() : 그리드 셀의 최소너비와 최대너비를 지정 */
+    /* 사이트를 줄였을때 최소너비보다 더 작아지지 않는다. */
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+    
+    /* auto-fit, auto-fill : 자동으로 컬럼 수를 조정 */
+    /*  auto-fit :늘어나다가 올라올 아이템이 없으면 전체 아이템이 맞춰서 길어진다(빈 영역x) 
+        auto-fill:늘어나다가 올라올 아이템이 없으면 아이템대신 빈 영역이 생긴다
+    */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    /* min이 200px 일때 1개 400px이 돼었을때 2개 600px이 돼었을때  3개가 올라올수 있다.*/
+    /* 셀들 간의 간격을 지정 */
+    gap: 10px;
+    /* column-gap: 10px;  */
+}
+
+.container2-1 {
+    display: grid;
+    background-color: grey;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+/* 현업에서 대부분  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    gap: 10px; 을 제일 많이 사용한다.
+*/
+
+.container3 {
+    padding: 10px;
+    display: grid;
+    background-color: grey;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.container3 :nth-child(1) {
+    /* grid-column-start: 1;
+    grid-column-end: 3; */
+    grid-column: 1/3;
+
+    /* grid-row-start: 1;
+    grid-row-end: 3; */
+    grid-row: 1/3;
+}
+
+.container3 :nth-child(5) {
+    grid-column: 2/3;
+    grid-row: 3/ span 2;
+    /* span n : 내위치에서 span n만큼 차지할것이다. */
+}
+
+
+
+
