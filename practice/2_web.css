@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: grid;
+    grid-template-columns:200px 1fr;
+    background-color: rgb(230, 230, 230);
+}
+
+.sidebar-sticky {
+    position: sticky;
+}
+
+.sidebar {
+    background-color: blueviolet;
+    min-height: 100vh;
+}
+
+
+h1 {
+    color: #fff;
+    padding: 2rem 1rem;
+}
+
+.sidebar-menu {
+    list-style-type: none;
+    padding-bottom: 3rem;
+    
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.sidebar-menu >li {
+    padding: 0.5rem 1.5rem;
+}
+
+.sidebar-menu > :nth-child(1) {
+    background-color: rgb(68, 13, 121);
+    color: #fff;
+    font-weight: 900;
+}
+
+.sidebar-menu > :not(:nth-child(1)):hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: all 0.8s;
+}
+
+.main-search > form {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#search {
+    width: 80%;
+}
+
+.btn-search {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: blueviolet;
+    color: #fff;
+    font-size: 1.5rem;
+    border: none;
+    font-weight: 900;
+}
+
+.main-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    background-image: url(../TEST/marvel/img/main_title.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h2 {
+    color: #fff;
+    font-size: 4rem;
+}
+
+
