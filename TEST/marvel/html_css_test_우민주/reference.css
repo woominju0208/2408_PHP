@@ -13,8 +13,8 @@ html {
 }
 
 .container {
-    display: grid;
-    grid-template-rows: 0.5fr 1fr;               /* px을 넣으면 늘리고 줄였을때 고정이 되버림 > 그럼 어떻게 하징 */
+    /* display: grid; */
+    /*grid-template-rows: 0.5fr 1fr;*/             /* px을 넣으면 늘리고 줄였을때 고정이 되버림 > 그럼 어떻게 하징 */
 }
 
 .header {
@@ -26,22 +26,24 @@ html {
     justify-content: space-between;
     align-items: center; */
     display: grid;
-    grid-template-columns: repeat(2,1fr);
-    grid-template-rows: repeat(5,1fr);
-    padding: 0 20px;
+    grid-template-columns: repeat(auto-fit, minmax(500px,1fr));
+    /* grid-template-columns: repeat(2,1fr); */
+    /* grid-template-rows: repeat(5,1fr); */
+    padding:80px;
+    padding-top: 70px;
 }
 
 h1 {
     color: #fff;
     padding: 0 10px;
     font-size: 60px;
-    grid-row: 3/5;
+    /* grid-row: 3/5; */
     /* display: inline-block; */
 }
 
 .header-content {
     right: 0;
-    grid-row: 3/5;
+    /* grid-row: 3/5; */
 }
 
 .header-content > p {
@@ -164,7 +166,6 @@ h2 {
 
 /* 문제점
     1.header 폰트랑 버튼 위치조정
-    2.header 안 <p> 내용에 <br> 을 쓰는게 맞는가? x
     3.a태그로 영역 이동 (부드럽게 스크롤) o
     4.main 카드 영역 줄이는 법
     5.main 카드 안 버튼의 위치가 안맞음
