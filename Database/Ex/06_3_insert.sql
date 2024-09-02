@@ -1,7 +1,7 @@
 -- INSERT 문 : 신규 데이터를 저장
 
 -- 기본구조
--- INSERT INTO 테이블명 (컬럼1. 컬럼2 ...)
+-- INSERT INTO 테이블명 (컬럼1, 컬럼2 ...)
 -- VALUES (값1, 값2 ...);
 
 INSERT INTO employees(
