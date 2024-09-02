@@ -206,7 +206,7 @@ FROM title_emps
 -- 사원별 최고 연봉 조회
 SELECT 
 	emp_id
-	,MIN(salary)
+	,Max(salary)
 FROM salaries
 GROUP BY emp_id
 ;
@@ -250,4 +250,38 @@ GROUP BY dept_code
 ;
 -- COUNT()  괄호안 컬럼명 *을 하면 null 다른것들도 전부 포함해줌(주로 count 에 *을 적어준다)
 
+-- LIMIT, OFFSET : 출력하는 데이터의 개수 제한
+-- OFFSET N 을 하면 N번째를 뛰어넘고 데이터를 가져온다.(기본값은 0이다.)
+-- OFFSET 은 앞에 꼭 LIMIT 가 있어야 한다 둘이 세트 (OFFSET 은 적어도 되고 안적어도 된다.)
+SELECT *
+FROM employees
+ORDER BY emp_id ASC
+LIMIT 5 OFFSET 10 
+;
 
+-- 현재받고 있는 급여 중 사원의 연봉 상위 5명을 조회
+SELECT  emp_id
+		 ,salary
+FROM salaries
+WHERE end_at IS NULL
+ORDER BY salary DESC
+LIMIT 5
+;
+
+SELECT *
+FROM salaries
+WHERE
+	end_At IS NULL
+ORDER BY salary DESC
+LIMIT 5
+;
+-- 현업에선 컬럼 명을 * 가 아닌 컬럼 명을 기제해준다.(select ~)(정확한 데이터만 도출)
+
+-- select문의 기본 구조
+SELECT [DISTINCT] [컬럼명]
+FROM [테이블명]
+WHERE [쿼리 조건]
+GROUP BY [컬럼명] HAVING [집계함수 조건]
+ORDER BY [컬럼명 ASC || 컬럼명 DESC]
+LIMIT [n] OFFSET [n]
+;
