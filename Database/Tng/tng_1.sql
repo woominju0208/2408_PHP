@@ -12,6 +12,12 @@ FROM salaries
 WHERE
 	salary <=60000000
 	AND end_at IS NULL;
+	
+SELECT emp_id
+FROM salaries
+WHERE
+	salary <=60000000
+;	
 -- ----------------------------------------------------------
 SELECT DISTINCT
 	emp_id 
@@ -26,6 +32,13 @@ FROM salaries
 WHERE
 	salary BETWEEN 60000000 and 70000000
 	AND end_at IS NULL;
+	
+SELECT
+	emp_id
+FROM salaries
+WHERE
+	salary BETWEEN 60000000 AND 70000000
+; 
 -- ----------------------------------------------------------
 SELECT
 	emp_id
@@ -41,6 +54,14 @@ FROM employees
 WHERE 
 	emp_id = 10001
 	OR emp_id = 10005;
+	
+SELECT
+	*
+FROM employees
+WHERE
+	emp_id =10001
+	OR emp_id = 10005
+;
 -- ----------------------------------------------------------
 SELECT *
 FROM employees
@@ -61,6 +82,14 @@ SELECT title_code
 FROM titles
 WHERE
 	title LIKE '%사%';
+	
+SELECT
+	title_code
+	,title
+FROM titles
+WHERE
+	title LIKE '%사%'
+;	 
 -- ----------------------------------------------------------
 SELECT 
 		title_code
@@ -77,6 +106,13 @@ FROM employees
 ORDER by
 	NAME ASC
 ;
+
+SELECT
+	name
+	FROM employees
+ORDER BY
+	name ASC
+;
 -- ----------------------------------------------------
 SELECT employees.name
 FROM employees
@@ -91,6 +127,13 @@ SELECT
 	,avg(salary)
 FROM salaries
 GROUP BY emp_id;
+
+SELECT 
+	emp_id
+	,AVG(salary)
+FROM salaries
+GROUP BY emp_id
+;
 -- ----------------------------------------------------------
 SELECT
 	emp_id
@@ -108,6 +151,16 @@ FROM salaries
 GROUP BY emp_id
 HAVING avg(salary) >=30000000
 		and avg(salary) <=50000000;
+		
+SELECT
+	emp_id
+	,AVG(salary)
+FROM salaries
+GROUP BY emp_id
+HAVING
+	AVG(salary) >=30000000
+	AND AVG(salary) <=50000000
+; 
 -- ----------------------------------------------------------
 SELECT
 	emp_id
