@@ -230,3 +230,43 @@ FROM salaries
 LIMIT 5;
 
 
+
+-- 연습
+SELECT SUBSTRING_INDEX('abd_kdk_dkd_kab','_' , 3);
+SELECT TRIM(' 1234 ');
+
+SELECT DATE(NOW());
+
+SELECT LPAD (1234,5,0);
+SELECT RPAD (1234,10,0);
+SELECT CONCAT_WS(' ','안녕','하세요','만두','입니다');
+SELECT CONCAT('안녕하세요','___','만두입니다');
+
+SELECT emp_id
+	,title_code
+	,IFNULL(end_at,date(NOW())) AS end_at
+FROM title_emps
+;
+
+SELECT emp_id
+		,fire_at
+,case 
+when fire_at IS not NULL then 'fired'
+ELSE fire_at
+END AS ing
+FROM employees
+;
+
+-- 연봉이 26000000원 이하 일때 null 로 처리
+SELECT emp_id
+		,salary
+FROM salaries
+WHERE salary <=26000000
+;
+
+-- if(조건 ,참 , 거짓)
+SELECT
+		emp_id
+		,salary
+ 		,if(salary>=26000000, salary, NULL) AS low
+FROM salaries; 
