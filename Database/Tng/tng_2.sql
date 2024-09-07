@@ -239,7 +239,29 @@ FROM title_emps
 		GROUP BY title_emps.emp_id
 	) avg_table
 		ON employees.emp_id = avg_table.emp_id
-;	
+;
+
+SELECT 
+	employees.emp_id
+	,employees.name
+	,AVG(salaries.salary)
+FROM title_emps
+	 JOIN titles
+	 	ON titles.title_code = title_emps.title_code
+		 	AND titles.title = '부장'
+		 	AND title_emps.end_at IS NULL		 	
+	JOIN salaries
+		ON salaries.emp_id = title_emps.emp_id
+			AND salaries.end_at IS null
+	JOIN employees
+		ON employees.emp_id = salaries.emp_id
+GROUP BY title_emps.emp_id	
+-- GROUP BY titles.title 을 넣으면 부장이라는 그룹만 잡히기 때문에
+-- title_emps.emp_id로 모든 직급들을 그룹화 해줘야 한다.	
+;
+			 	
+
+	
 -- () 안에 있는 서브쿼리 에 group by 가 있으니 서브쿼리 밖에
 -- 메인 쿼리 join 에도 또 group by 를 적을수 있다.
 
