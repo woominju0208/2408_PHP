@@ -155,5 +155,3 @@ HAVING
 	avg_sal BETWEEN 30000000 AND 50000000		
 ;
 
-=======
->>>>>>> 4ba6fb8be1710ead9c350541a86b7019bb4579b2
