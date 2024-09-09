@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 -- 100000번 사원의 연봉을 4000만원으로 변경
 -- 기존의 데이터를 남겨야 하기 때문에 UPDATE가 아닌 INSERT 로 추가
 -- 기존의 데이터의 updated_at, end_at 은 UPDATE로 바꿔줘야 한다
@@ -155,5 +154,78 @@ HAVING
 	avg_sal BETWEEN 30000000 AND 50000000		
 ;
 
-=======
->>>>>>> 4ba6fb8be1710ead9c350541a86b7019bb4579b2
+-- 6. 현재 각 부서의 부서장의 부서명, 이름, 입사일을 출력해 주세요.
+SELECT
+	departments.dept_name
+	,emp.name
+	,emp.hire_at
+FROM employees emp
+	JOIN department_managers dept_mg
+		ON emp.emp_id = dept_mg.emp_id
+			AND end_at IS null
+	JOIN departments
+		ON departments.dept_code = dept_mg.dept_code
+;
+
+INSERT INTO employees(
+	
+)
+VALUES (
+
+);
+
+UPDATE employees
+SET
+WHERE
+;
+ 
+DELETE FROM employees
+WHERE
+;
+
+CREATE DATABASE shop;
+
+DROP DATABASE shop;	
+
+CREATE TABLE users (
+	id 			BIGINT(20) 			PRIMARY KEY  AUTO_INCREMENT 
+	,NAME 		VARCHAR(50) 		NOT NULL
+	,birth 		DATE 					NOT NULL 
+	,addr 		VARCHAR(150) 		NOT NULL
+	,gender 		CHAR(1) 				NOT NULL  COMMENT 'M = 남자, F = 여자'
+	,tel 			VARCHAR(20) 		NOT null COMMENT '- 제외 숫자만'
+	,created_at TIMESTAMP 			NOT NULL DEFAULT CURRENT_TIMESTAMP()
+	,updated_at TIMESTAMP 			NOT NULL DEFAULT CURRENT_TIMESTAMP()
+	,deleted_at TIMESTAMP 			NOT NULL DEFAULT CURRENT_TIMESTAMP()
+);
+
+CREATE TABLE users (
+	id			BIGINT(20) UNSIGNED		PRIMARY KEY		AUTO_INCREMENT 
+	,NAME		VARCHAR(50)		NOT NULL
+	,addr		VARCHAR(150)	NOT NULL
+	,gender	CHAR(1)			NOT NULL		COMMENT 'M = 남자, F = 여자'
+	,tel		VARCHAR(20)		NOT NULL		COMMENT '- 제외 숫자'
+	,created_at	TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP()
+	,updated_at	TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP()
+	,deleted_at	TIMESTAMP			
+);
+
+DROP TABLE users;
+
+INSERT INTO users(			 
+	NAME		
+	,addr		
+	,gender	
+	,tel		
+	,created_at	
+	,updated_at	
+)
+VALUES (
+	'농담곰'		
+	,'농담곰마을 105-1203'		
+	,'M'	
+	,'010-9137-6458'		
+	,NOW()	
+	,NOW()		
+);
+AA
