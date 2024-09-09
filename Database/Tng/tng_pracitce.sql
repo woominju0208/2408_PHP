@@ -153,3 +153,4 @@ GROUP BY salaries.salary
 HAVING
 	avg_sal BETWEEN 30000000 AND 50000000		
 ;
+
