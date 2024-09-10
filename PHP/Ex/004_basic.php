@@ -2,6 +2,8 @@
 
 // 변수 (Variable) 
 // $변수명 = 변수; (변수명에 숫자든 문자든 다 들어감)
+// 변수 선언
+
 $dan = 6;
 $wow = 1;
 
@@ -48,7 +50,7 @@ $name = "고양이\n";
 echo $name;
 
 // ---------------------------------
-// 상수 (constants)
+// 상수 (Constants)
 // 상수특징 모두 대문자(상수는 기본적으로 모두 대문자 변수는 네이밍 기법 따라 소문자,소문자+대문자)
 // 상수는 $ 생략
 define("AGE", 20);
@@ -126,5 +128,5 @@ $obj = new DateTime();
 var_dump($obj);
 
 // 형변환
-$casting = (string)$num;
+$casting = (String)$num;
 var_dump($casting);

@@ -25,9 +25,7 @@ var_dump("바덤프"); // TODO : 추후 제거
 
 // 자기이름 출력
 echo '우민주';
+echo "\n";
 
 // 다른 사람ip로 웹 접속하는법
 // cmd 에서 ipconfig후 ip 주소 확인후 http 주소에 ip/파일주소.php 입력하면 나옴
-
-
-

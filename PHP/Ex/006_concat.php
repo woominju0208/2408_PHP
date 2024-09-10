@@ -6,8 +6,8 @@ $str1 = " 안녕, ";
 $str2 = " PHP!!";
 
 $concat1 = $str1.$str2."\n";
-
 echo $concat1;
+
 
 $str3 = "\"안녕";
 $str4 = "하세요\"";
