@@ -117,8 +117,12 @@ echo gettype($type7)."\n";
 
 // 타입 체크 예
 if(gettype($type2) === "integer") {
-    echo "숫자임";
+    echo "숫자임\n";
 }
+if(gettype($type1) === "string") {
+    echo "문자임\n";
+}
+
 
 echo "\n";
 // ----------------
