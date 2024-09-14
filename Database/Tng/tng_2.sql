@@ -203,7 +203,18 @@ FROM title_emps
 		ON title_emps.emp_id = salaries.emp_id
 			AND salaries.end_at IS null
 GROUP BY titles.title
-;		
+;	
+
+SELECT
+	AVG(salaries.salary) avg_sal
+FROM salaries
+	JOIN employees
+		ON salaries.emp_id = employees.emp_id
+		AND salaries.end_at IS NULL
+		AND employees.fire_at IS NULL
+GROUP BY salaries.emp_id
+;
+		
 
 -- 현재 각 부장별 연봉 평균
 SELECT
@@ -325,7 +336,8 @@ GROUP BY titles.title
 	HAVING
 		avg_sal >=60000000
 ORDER BY avg_sal DESC
-;		
+;
+		
 
 
 
@@ -367,7 +379,4 @@ FROM employees
 			AND employees.fire_at IS NULL
 			AND employees.gender= 'F'
 GROUP BY title_emps.title_code
-;		
-
-
-				
+;					

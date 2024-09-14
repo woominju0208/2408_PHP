@@ -132,6 +132,7 @@ SELECT
 	emp_id
 	,AVG(salary)
 FROM salaries
+WHERE end_at IS null
 GROUP BY emp_id
 ;
 -- ----------------------------------------------------------
