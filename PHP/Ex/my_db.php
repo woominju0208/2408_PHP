@@ -4,12 +4,13 @@ function my_db_conn() {
     $my_host = "localhost";   // DB Host
     // $my_host = "127.0.0.1";   // ip로도 접속
 
+    $my_port = "3306";       // port
     $my_user = "root";         //DB 계정명
     $my_password = "php504";   //DB 계정비밀번호
     $my_db_name = "dbsample";  // 접속할 DB명
     $my_charset = "utf8mb4";   // DB Charset
 
-    $my_dsn = "mysql:host=".$my_host.";dbname=".$my_db_name.";charset=".$my_charset;  // DSN: data source name
+    $my_dsn = "mysql:host=".$my_host.";port=".$my_port.";dbname=".$my_db_name.";charset=".$my_charset;  // DSN: data source name
 
     // PDO 옵션 설정
     $my_otp = [
@@ -23,6 +24,7 @@ function my_db_conn() {
 
     // DB 접속
     return new PDO($my_dsn, $my_user, $my_password, $my_otp);
+    // return이 처리한 결과를 반환시켜주는것 함수 my_db_conn()의 값을 return new PDO로 반환
 }
 
 
