@@ -9,43 +9,50 @@ try {
     $conn = my_db_conn();
 
     $conn->beginTransaction();
-
+    // ------------------------
+    // 기존 급여 수정
     $sql = 
         " UPDATE salaries "
         ." SET "
-        .   " end_at = DATE(NOW())"
-        .   " ,updated_at = NOW() "
+        ."      end_at = DATE(NOW())"
+        ."      ,updated_at = NOW() "
         ." WHERE "
-        .   " emp_id =:emp_id "
-        .   " AND end_at is null " 
+        ."      emp_id = :emp_id "
+        ."      AND end_at IS NULL " 
     ;
+    // : 가 prepare_statment 라고 인식시켜주는것 
 
     $arr_prepare = [
         "emp_id" => 100014
     ];
 
+    // DB준비, 실행, 오류조건
     $stmt = $conn->prepare($sql);
     $result_flg = $stmt->execute($arr_prepare);
-    $result_cnt = $stmt->rowCount();
+    // execute 는 한번만 사용되기 때문에 따로 변수로 담지 않고 바로 if문으로 체크해도 된다.
+    // $result_cnt = $stmt->rowCount();
+    // rowCount 는 한번만 사용되기 때문에 따로 변수로 담지 않고 바로 if문으로 체크해도 된다.
 
     if(!$result_flg) {
         throw new Exception("Update Query Error : salaries");
     }
 
-    if($result_cnt !==1) {
+    if($stmt->rowCount() !==1) {
         throw new Exception("Update Count Error : salaries");
     }
 
+    // ------------------------
+    // 새로운 급여 이력 추가
     $sql =
         " INSERT INTO salaries( "
-        .   " emp_id "
-        .   ", salary "
-        .   ", start_at "
+        ."       emp_id "
+        ."      ,salary "
+        ."      ,start_at "
         ." ) "
         ." VALUES( "
-        .   " :emp_id "
-        .   ", :salary "
-        .   ", DATE(NOW()) "
+        ."      :emp_id "
+        ."      ,:salary "
+        ."      ,DATE(NOW()) "
         ." ) "
         ;
 
