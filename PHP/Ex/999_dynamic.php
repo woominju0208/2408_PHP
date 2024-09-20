@@ -33,16 +33,17 @@ foreach($data as $key => $val) {
 }
 
 $sql .= $where; 
-// // $sql .= $where; === $sql = $sql.$where;
-// echo $sql."\n";
+// $sql .= $where; === $sql = $sql.$where;
+echo $sql."\n";
 
-// print_r($arr_prepare);0
+print_r($arr_prepare);
 
 // my_db 데이터를 통해 데이터 가져오기
-require_once("./my_db.php");
-$conn = my_db_conn();
 
-$stmt = $conn->prepare($sql);
-$stmt -> execute($arr_prepare);
+// require_once("./my_db.php");
+// $conn = my_db_conn();
 
-print_r($stmt->fetchAll());
+// $stmt = $conn->prepare($sql);
+// $stmt -> execute($arr_prepare);
+
+// print_r($stmt->fetchAll());
