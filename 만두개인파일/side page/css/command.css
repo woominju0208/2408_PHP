@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    color: #6C6CFA;
+    font-size: 2.2rem;
+    text-align: center;
+    padding: 40px 0;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+button {
+    background-color: #7EABFF;
+    color: #fff;
+    border: none;
+    border-radius: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4E7DFF;
+}
+
+main {
+    background-color: #DEE8FF;
+    width: 800px;
+    border-radius: 20px;
+    padding: 15px 20px;
+    margin: 0 auto;
+}
+
+.main_footer {
+    margin: 40px 0;
+    text-align: center;
+}
+
+.btn_small {
+    width: 50px;
+    height: 50px;
+}
