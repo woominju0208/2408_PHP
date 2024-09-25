@@ -14,8 +14,9 @@ define("MY_MARIADB_DSN", "mysql:host=".MY_MARIADB_HOST.";port=".MY_MARIADB_PORT.
 
 
 // ** PHP Path관련 설정 **
-define("MY_PATH_ROOT", $_SERVER["DOCUMENT_ROOT"]."/");  // 웹서버 document root 
+define("MY_PATH_ROOT", $_SERVER["DOCUMENT_ROOT"]."/");   // 웹서버 document root 
 define("MY_PATH_DB_LIB", MY_PATH_ROOT."lib/db_lib.php"); // DB 라이브러리
+define("MY_PATH_ERROR", MY_PATH_ROOT."erro.php");        // 에러 페이지
 
 // $_SERVER["DOCUMENT_ROOT"] = C:/Apache24/htdocs
 // MY_PATH_ROOT."lib/db_lib.php" = C:/Apache24/htdocs/lib/db_lib.php
@@ -27,4 +28,5 @@ define("MY_PATH_DB_LIB", MY_PATH_ROOT."lib/db_lib.php"); // DB 라이브러리
 // 그럼 공통파일인 config만 수정하면 되기 때문에 필수요소이고 유지보수 측면이 매우 좋다.
 
 // ** 로직 관련 설정 **
-define("MY_LIST_COUNT", 5);
+define("MY_LIST_COUNT", 3);
+define("MY_PAGE_BUTTON_COUNT", 5);

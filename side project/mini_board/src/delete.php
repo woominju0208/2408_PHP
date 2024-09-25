@@ -1,0 +1,62 @@
+<?php
+require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
+require_once(MY_PATH_DB_LIB);
+
+$conn = null;
+try {
+    $conn = my_db_conn();
+
+    $arr_prepare = [
+        
+    ];
+
+}catch(Throwable $th) {
+
+}
+
+
+?>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>삭제 페이지</title>
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/delete.css">
+</head>
+<body>
+    <?php
+        require_once(MY_PATH_ROOT."/header.php");
+    ?>
+    <main>
+        <div class="main_header">
+            <p>삭제하면 영구적으로 복구할 수 없습니다.</p>
+            <p>정말로 삭제 하시겠습니까?</p>
+        </div>
+        <div class="main_content">
+            <div class="box">
+                <div class="box_title">게시글 번호</div>
+                <div class="box_content">30</div>
+            </div>
+            <div class="box">
+                <div class="box_title">작성일</div>
+                <div class="box_content">2024-09-23 10:53:00</div>
+            </div>
+            <div class="box">
+                <div class="box_title">제목</div>
+                <div class="box_content">제목30</div>
+            </div>
+            <div class="box">
+                <div class="box_title">내용</div>
+                <div class="box_content">내용30</div>
+            </div>
+        </div>
+        <div class="main_footer">
+            <a href="./index.html"><button class="btn_small" type="button">동의</button></a>
+            <a href="./detail.html"><button class="btn_small" type="button">취소</button></a>
+        </div>
+    </main>
+</body>
+</html>
