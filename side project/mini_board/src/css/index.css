@@ -3,11 +3,6 @@
     margin-bottom: 20px;
 }
 
-.btn_middle {
-    width: 130px;
-    height: 40px;
-}
-
 .item {
     display: grid;
     grid-template-columns: 1fr 1fr 2fr;
