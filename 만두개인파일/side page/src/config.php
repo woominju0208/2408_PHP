@@ -5,7 +5,7 @@
 define("MY_MARIADB_HOST", "localhost");   // HOST
 define("MY_MARIADB_PORT", "3306");        // PORT
 define("MY_MARIADB_USER", "root");
-define("MY_MARIADB_PASSWORD", "mandu0208");
+define("MY_MARIADB_PASSWORD", "php504");
 define("MY_MARIADB_NAME", "mini_board");  // NAME
 define("MY_MARIADB_CHARSET", "utf8mb4");  // CHARSET
 define("MY_MARIADB_DSN", "mysql:host=".MY_MARIADB_HOST.";port=".MY_MARIADB_PORT.";dbname=".MY_MARIADB_NAME.";charset".MY_MARIADB_CHARSET);
