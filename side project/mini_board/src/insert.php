@@ -4,6 +4,8 @@ require_once(MY_PATH_DB_LIB);
 
 // POST 처리 [REQUEST_METHOD] => GET
 // 혹시라도 소문자 POST가 올까봐 strtoupper(모두 대문자 지정) 장치를 넣어둠
+$conn = null;
+// post 처리
 if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
     try{
         // PDO Instance
@@ -47,7 +49,7 @@ if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
 </head>
 <body>
     <?php
-        require_once(MY_PATH_ROOT."/header.php");
+        require_once(MY_PATH_ROOT."header.php");
     ?>
     <main>
         <!-- 내용을 insert하면 내 insert페이지로 이동 insert하기 때문에 method post -->
@@ -67,6 +69,7 @@ if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
             <div class="main_footer">
                 <button class="btn_small" type="submit">작성</button>
                 <a href="/"><button class="btn_small" type="button">취소</button></a>
+                <!-- insert.php 엔 내용값때메 POST 만 넣었는데 취소버튼이 만약/index.php?page=3 을 가고싶다 그럼 else 에 GET도 추가한다. -->
             </div>
         </form>
     </main>
