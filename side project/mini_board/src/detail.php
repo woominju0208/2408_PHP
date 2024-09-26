@@ -41,7 +41,7 @@ try{
 </head>
 <body>
     <?php
-        require_once(MY_PATH_ROOT."/header.php");
+        require_once(MY_PATH_ROOT."header.php");
     ?>
     <main>
         <div class="main_content">
@@ -66,7 +66,7 @@ try{
         <div class="main_footer">
             <a href="/update.php?id=<?php echo $result["id"] ?>&page=<?php echo $page ?>"><button class="btn_small" type="button">수정</button></a>
             <a href="/index.php?page=<?php echo $page ?>"><button class="btn_small" type="button">취소</button></a>
-            <a href="/delete.php"><button class="btn_small" type="button">삭제</button></a>
+            <a href="/delete.php?id=<?php echo $result["id"] ?>&page=<?php echo $page ?>"><button class="btn_small" type="button">삭제</button></a>
         </div>
     </main>
 </body>

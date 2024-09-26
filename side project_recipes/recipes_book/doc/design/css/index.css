@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Gochi Hand", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+header {
+    width: 800px;
+    background-color: #FFF6F6;
+    border-radius: 20px 20px 0 0 ;
+    margin-left: 50vh;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    font-size: 2rem;
+    color: #B22424;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 2.5rem;
+    color: #B22424;
+
+}
+
+h1 > span {
+    color: #FF7C7F;
+}
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+button {
+    background-color: #FF8888;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.2rem;
+}
+
+
+main {
+    background-color: #ffffff;
+    width: 800px;
+    margin-left: 50vh;
+}
+
+.main-top {
+    text-align: right;
+    padding: 0 20px;
+    background-color: #FFF6F6;
+}
+
+.main-list > p{
+    color: #B22424;
+    font-size: 40px;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.btn-middle {
+    width: 130px;
+    height: 40px;
+    background-color: #FFADAD;
+    margin-bottom: 10px;
+}
+
+.btn-middle:hover {
+    background-color: #FF7979;
+}
+
+.item {
+    display: flex;
+    justify-content: center;
+}
+
+
+.list-content {
+    background-color: #FFECEC;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 20px;
+    
+}
+
+.content-img {
+    background-color: #fff;
+    border: 5px solid #FFC9C9;
+    border-radius: 50px;
+    width: 130px;
+    height: 130px;
+    
+}
+
+.btn-content {
+    background-color: #fff;
+    color: #000;
+    width: 40px;
+    height: 20px;
+    text-align: center;
+}
+
+.main-footer {
+    background-color: #FFF6F6;
+    width: 800px;
+    border-radius: 0 0 20px 20px ;
+    text-align: center;
+    margin: 40px 0;
+    padding: 30px 0;
+}
+
+.btn-small {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.content-btn {
+    margin-top: 100px;
+}

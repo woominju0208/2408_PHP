@@ -21,6 +21,8 @@ function my_board_select_pagination(PDO $conn, array $arr_param) {
         ."      * "
         ." FROM "
         ."      board "
+        ." WHERE "
+        ."      deleted_at is NULL "
         ." ORDER BY "
         ."      created_at DESC "
         ."      , id DESC "
@@ -112,6 +114,7 @@ function my_board_select_id(PDO $conn, array $arr_param) {
     return $stmt->fetch();
 }
 
+// board 테이블 update 처리
 function my_board_update(PDO $conn, array $arr_param) {
     $sql =
     " UPDATE board "
@@ -125,9 +128,42 @@ function my_board_update(PDO $conn, array $arr_param) {
 
     $stmt = $conn->prepare($sql);
     $result_flg = $stmt->execute($arr_param);
-    if(!$result_flg) {
+    if(!$result_flg) {   // 쿼리가 실행됐는지 체크
         throw new Exception("쿼리 실행 실패");
     }
 
+    if($stmt->rowCount() !== 1) {  // 업데이트 갯수가 하나인지 체크
+        throw new Exception("Update Count 이상");
+    }
+    return true;
+}
+
+// board 테이블 레코드 삭제
+function my_board_delete_id(PDO $conn, array $arr_param) {
+    $sql =
+    " UPDATE board "
+    ." SET "
+    ."      updated_at = NOW() "
+    ."      ,deleted_at = NOW() "
+    ." WHERE "
+    ."      id = :id "
+    ;
+// 현업에선 데이터 삭제는 일정기간이 지나야 삭제 지금은 deleted_at로 소프트 삭제만 한다 > 그래서 update
+// delete 문 X
+    // $sql =
+    // " DELETE FROM board "
+    // ." WHERE "
+    // ."      id = :id "
+    // ;
+
+    $stmt = $conn->prepare($sql);  // 쿼리준비
+    $result_flg = $stmt->execute($arr_param);  // 쿼리실행
+    if(!$result_flg) {     
+        throw new Exception("쿼리 실행 실패");  // 쿼리실행 오류찾기
+    }
+
+    if($stmt->rowCount() !== 1) {
+        throw new Exception("Delete Count 이상"); // 삭제 갯수 오류찾기
+    }
     return true;
 }

@@ -62,7 +62,7 @@ try {
 </head>
 <body>
     <?php
-        require_once(MY_PATH_ROOT."/header.php");
+        require_once(MY_PATH_ROOT."header.php");  // 여러번 들고오는 header부분도 상수처리 해두면 좋겠다.
     ?>
     <main>
         <div class="main-top">
