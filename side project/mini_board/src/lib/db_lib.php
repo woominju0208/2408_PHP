@@ -1,4 +1,6 @@
 <?php
+// require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
+// require_once("../config.php");
 require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
 
 
@@ -8,10 +10,10 @@ function my_db_conn() {
         ,PDO::ATTR_ERRMODE              => PDO::ERRMODE_EXCEPTION
         ,PDO::ATTR_DEFAULT_FETCH_MODE   => PDO::FETCH_ASSOC
     ];
-
+    
     return new PDO(MY_MARIADB_DSN, MY_MARIADB_USER, MY_MARIADB_PASSWORD, $option);
 }
-
+// my_db_conn();
 
 // board select 페이지네이션
 function my_board_select_pagination(PDO $conn, array $arr_param) {
