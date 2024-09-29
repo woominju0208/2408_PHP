@@ -6,8 +6,8 @@
 .main-list > p{
     display: inline-block;
     color: #B22424;
-    font-size: 30px;
-    padding: 0 10px 0 15px;
+    font-size: 40px;
+    padding: 0 0 0 15px;
 }
 
 .content-btn {
@@ -19,7 +19,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px;
+    padding: 20px;
 }
 .content-img {
     width: 400px;
@@ -39,21 +39,24 @@
 .content-detail {
     background-color: rgb(255, 29, 29, 0.5);
     color: #fff;
-    font-size: 20px;
+    font-size: 30px;
     border-radius: 0 20px 20px 20px;
-    width: 300px;
+    max-width: 300px;
+    min-height: 500px;
     padding: 20px;
+    position: relative;
 }
+
+
 
 .detail-title {
     font-size: 30px;
 }
 
 .detail-create_at {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 380px;
+    position: absolute;
+    bottom: 10px;
+    margin-left: 40px;
 }
 
 .main-footer {

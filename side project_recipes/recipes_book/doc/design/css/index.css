@@ -7,14 +7,15 @@
 
 .main-list {
     background-color: #fffcfc;
+
     max-height: 400px;  /* index 페이지가 세로로 길어지면 세로길이도 수정해야함.. */
 }
 
 .main-list > p{
     color: #B22424;
-    font-size: 30px;
+    font-size: 40px;
     text-align: center;
-    padding: 10px 0;
+    padding: 5px 0;
 }
 
 .btn-middle {
@@ -37,10 +38,14 @@
 
 .list-content {
     background-color: #FFECEC;
+    font-size: 20px;
     margin: 10px;
-    padding: 10px;
+    padding: 10px 20px;
     border-radius: 20px;
-    
+}
+
+.list-content-title {
+    font-size: 30px;
 }
 
 .list-content:hover {
