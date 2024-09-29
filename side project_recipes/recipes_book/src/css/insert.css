@@ -1,0 +1,142 @@
+main {
+    background-color: #ffefef;
+    border-radius: 0 0 20px 20px ;
+}
+
+.main-list > p{
+    color: #B22424;
+    text-align: left;
+    font-size: 40px;
+    padding: 0 0 0 15px;
+}
+
+.item {
+    margin: 30px;
+}
+
+.box {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    font-weight: 500;
+
+}
+
+.box-title {
+    background-color: #FFA9A9;
+    font-size: 30px;
+    color: #fff;
+    border-radius: 40px 0 0 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-content {
+    background-color: #fff;
+    border-radius:0 40px 40px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-box {
+    height: 50px;
+}
+
+.content-box {
+    height: 200px;
+}
+
+.image-box {
+    font-size: 30px;
+    text-align: center;
+}
+
+.box-content > input,
+.box-content > textarea {
+    border: none;
+    outline: none;
+    resize: none;
+    /* border-radius: 40px 0 0 40px; */
+    width: 90%;
+    height: 90%;
+    font-size: 1.5rem;
+
+}
+
+input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+
+.image-upload {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+}
+
+label {
+    cursor: pointer;
+    font-size: 1em;
+}
+
+#chooseFile {
+    visibility: hidden;
+}
+
+.fileContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fileInput {
+    display: flex;
+    align-items: center;
+    border-bottom: solid 2px black;
+    width: 60%;
+    height: 30px;
+    font-size: 20px;
+}
+
+#fileName {
+    margin-left: 5px;
+}
+
+.buttonContainer {
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    background-color: #FFA9A9;
+    color: white;
+    border-radius: 30px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.image-show {
+    z-index: 1;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    display: inline-block;
+}
+
+.img {
+    position: absolute;
+}
+
