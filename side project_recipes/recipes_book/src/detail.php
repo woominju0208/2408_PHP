@@ -68,9 +68,9 @@ try {
                     <a href=""><button class="btn-small content-btn">></button></a>
             </div>
                 <div class="main-footer">
-                    <a href="/update.php"><button class="btn-small btn-eng">수정</button></a>
-                    <a href="/index.php?page=<?php echo $page ?>"><button class="btn-small btn-eng">취소</button></a>
-                    <a href="/delete.php"><button class="btn-small btn-eng">삭제</button></a>
+                    <a href="/update.php?id=<?php echo $result["id"] ?>&page=<?php echo $page ?>"><button class="btn-small btn-eng" type="button">수정</button></a>
+                    <a href="/index.php?page=<?php echo $page ?>"><button class="btn-small btn-eng" type="button">취소</button></a>
+                    <a href="/delete.php?id=<?php echo $result["id"] ?>&page=<?php echo $page ?>"><button class="btn-small btn-eng" type="button">삭제</button></a>
                 </div>
     </main>
 </body>
