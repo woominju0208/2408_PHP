@@ -4,8 +4,8 @@ main {
 }
 
 .main-list > p{
+    display: inline-block;
     color: #B22424;
-    text-align: left;
     font-size: 40px;
     padding: 0 0 0 15px;
 }

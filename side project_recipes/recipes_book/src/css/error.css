@@ -1,0 +1,16 @@
+main {
+    width: 900px;
+    margin-left: 50vh;
+    background-color: #ffefef;
+    padding: 30px;
+    border-radius: 0 0 20px 20px;
+}
+
+p {
+    font-size: 30px;
+}
+
+.btn_middle {
+    padding: 10px;
+    border-radius: 40px;
+}
