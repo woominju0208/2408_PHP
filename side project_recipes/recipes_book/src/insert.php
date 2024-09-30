@@ -9,10 +9,12 @@ if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST"){
 
         $conn = my_db_conn();
 
+    // TODO : db에 이미지를 넣지 않으면 db에 null로 저장 되고 싶다. (if문 생각중)  
+    
+        // if($file["name"]  === !$extension) {
+        //    $result_path = NULL; 
+        // } else {
 
-        if($file["name"]  === !$extension) {
-           $result_path = NULL; 
-        } else {
             // 실제 현업 이미지 저장법! (이미지 이름 중복을 방지 하기 위해 랜덤이름을 지정해줌)
     
             $file = $_FILES["file"];
@@ -31,7 +33,7 @@ if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST"){
             move_uploaded_file($file["tmp_name"], MY_PATH_ROOT.$file_path);
             // move_uploaded_file은 DB에 저장할 이미지파일 이름으로 $file["tmp_name"]는 이미지의 임시저장소로 이걸 MY_PATH_ROOT.$file_path= htdocs에 img 폴더에 66fa5deab0534.jpeg 이런식으로 저장
 
-        }
+        // }
         
         $arr_prepare = [
             "title" => $_POST["title"]  
