@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=Gochi+Hand&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=Gochi+Hand&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -87,8 +85,4 @@ main {
     width: 60px;
     height: 40px;
     border-radius: 20px;
-}
-
-.btn_selected {
-    background-color: #bb4f4f;
 }
