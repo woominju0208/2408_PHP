@@ -8,17 +8,16 @@ if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST"){
     try {
 
         $conn = my_db_conn();
+ 
+        // $file 을 $_FILE(이미지) 의 file 을 가져옴  
+        $file = $_FILES["file"];
 
-    // TODO : db에 이미지를 넣지 않으면 db에 null로 저장 되고 싶다. (if문 생각중)  
-    
-        // if($file["name"]  === !$extension) {
-        //    $result_path = NULL; 
-        // } else {
+        if($file["name"]  === "") {
+           $file_path = null; 
+        } else {
 
             // 실제 현업 이미지 저장법! (이미지 이름 중복을 방지 하기 위해 랜덤이름을 지정해줌)
     
-            $file = $_FILES["file"];
-            // $file 을 $_FILE(이미지) 의 file 을 가져옴  
             $file_type = $_FILES["file"]["type"];
             // $file_type 이미지 확장자를 가져오기 위해 $_FILE(이미지) 의 file 과 type(jpg,png,web 등등...)을 가져옴
             $file_type_array = explode("/", $file_type);
@@ -32,16 +31,16 @@ if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST"){
             // $file_path 는 $_SERVER["DOCUMENT_ROOT"]에 img폴더에 uniqid()(랜덤이름) 으로 .(연결) $extension(파일타입) 이라는 파일이 나온다.
             move_uploaded_file($file["tmp_name"], MY_PATH_ROOT.$file_path);
             // move_uploaded_file은 DB에 저장할 이미지파일 이름으로 $file["tmp_name"]는 이미지의 임시저장소로 이걸 MY_PATH_ROOT.$file_path= htdocs에 img 폴더에 66fa5deab0534.jpeg 이런식으로 저장
+            $file_path = "/".$file_path;
+        }
+        $conn->beginTransaction();
 
-        // }
-        
         $arr_prepare = [
             "title" => $_POST["title"]  
             ,"content" => $_POST["content"]
-            ,"image" => "/".$file_path
+            ,"image" => $file_path
         ];
 
-        $conn->beginTransaction();
         my_board_insert($conn, $arr_prepare);
 
         $conn->commit();

@@ -3,22 +3,18 @@ require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
 require_once(MY_PATH_DB_LIB);
 
 $conn = null;
-// $max_id_cnt = 0;
 
 try {
 
-    $id = isset($_GET["id"]) ? (int)$_GET["id"] : 0;
+    // id 획득
+    $id = isset($_GET["id"]) ? (int)$_GET["id"] : 0; 
+    // page 획득
     $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
 
     if($id < 1) {
         throw new Exception("파라미터 오류");
     }
-
-    $start_page_button_number = (int)(floor(($page - 1) / MY_PAGE_BUTTON_CNT) * MY_PAGE_BUTTON_CNT) +1;
-    // 최대 id 구하기
-    // $max_id_cnt = my_board_id_count($conn);
-    // $max_id = (int)ceil($max_id_cnt/MY_LIST_CNT);
-
+    
 
     $conn = my_db_conn();
     $arr_prepare = [
@@ -39,7 +35,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>작성 페이지</title>
+    <title>상세 페이지</title>
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/detail.css">
 </head>
@@ -53,7 +49,7 @@ try {
             <p><?php echo $result["id"] ?></p>
         </div>
             <div class="item">
-                <a href="/index.php?id=<?php echo $page - 1 ?>&page=<?php echo $start_page_button_number ?>"><button class="btn-small content-btn"><</button></a>
+                <!-- <a href=""><button class="btn-small content-btn"><</button></a> -->
 
                 <div class="content-img">
                     <img class="img-insert" src=<?php echo $result["image"] ?>>
@@ -65,7 +61,7 @@ try {
                         <div class="detail-create_at"><?php echo $result["created_at"] ?></div>
                     </div>
                 </div>
-                    <a href=""><button class="btn-small content-btn">></button></a>
+                <!-- <a href=""><button class="btn-small content-btn">></button></a> -->
             </div>
                 <div class="main-footer">
                     <a href="/update.php?id=<?php echo $result["id"] ?>&page=<?php echo $page ?>"><button class="btn-small btn-eng" type="button">수정</button></a>

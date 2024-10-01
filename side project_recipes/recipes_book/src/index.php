@@ -20,6 +20,9 @@ try {
     $start_page_button_number = (int)(floor(($page - 1) / MY_PAGE_BUTTON_CNT) * MY_PAGE_BUTTON_CNT) +1;
     // 1~5 => 1  6~10 -> 6  11~15 -> 11
 
+    $next_page = $start_page_button_number + 5;
+    $prev_page = $start_page_button_number - 5;
+
     // 화면 표시 시작 페이지 버튼 마지막 값
     $end_page_button_number = $start_page_button_number + (MY_PAGE_BUTTON_CNT - 1);
 
@@ -27,8 +30,11 @@ try {
     $end_page_button_number = $end_page_button_number > $max_page ? $max_page : $end_page_button_number;
 
     $prev_page_button_number = $page - 1 < 1 ? 1 : $page - 1;
+    // $prev_page_button_number = $page - 1 < 1 ? 1 : (int)floor(($page - 1) / MY_PAGE_BUTTON_CNT) -6;
 
-    $next_page_button_number = $page + 1 > $max_page ? $max_page : $page + 1; 
+    $next_page_button_number = $page + 1 > $max_page ? $max_page : $page + 1;
+    // $next_page_button_number = $page + 1 > $max_page ? $max_page : (int)((floor(($page - 1) / MY_PAGE_BUTTON_CNT) * MY_PAGE_BUTTON_CNT) +1) + 5; 
+
     
 
     $arr_prepare = [
@@ -73,10 +79,14 @@ try {
                 <?php } ?>
 
                 <?php foreach($result as $item) { ?>
-                    <a href="/detail.php?id=<?php echo $item["id"] ?>$page=<?php echo $page ?>">
+                    <a href="/detail.php?id=<?php echo $item["id"] ?>&page=<?php echo $page ?>">
                         <div class="list-content">
                             <div class="content-img">
-                                <img class="img-insert" src= <?php echo $item["image"] ?>>
+                                <?php if(is_null($item["image"])) { ?>
+                                    <img class="img-insert" src="<?php MY_PATH_ROOT."img/noimg.gif" ?>">
+                               <?php } else { ?>
+                                    <img class="img-insert" src= <?php echo $item["image"] ?>>
+                                <?php } ?>
                             </div>
                             <div class="list-content-title"><?php echo $item["title"] ?></div>
                             <div><?php echo $item["created_at"] ?></div>
@@ -91,14 +101,14 @@ try {
             </div>
 
             <div class="main-footer">
-                <?php if($page !== 1) { ?>
-                <a href="/index.php?page=<?php echo $prev_page_button_number ?>"><button class="btn-small">◀</button></a>
+                <?php if(($page !== 1)&&(!($prev_page < 1))) { ?>
+                <a href="/index.php?page=<?php echo $prev_page ?>"><button class="btn-small">◀</button></a>
                 <?php } ?>
                 <?php for($i = $start_page_button_number; $i <=$end_page_button_number; $i++) { ?>
                     <a href="/index.php?page=<?php echo $i ?>"><button class="btn-small <?php echo $page === $i ? "btn_selected" : "" ?>"><?php echo $i ?></button></a>
                 <?php } ?>
-                <?php if($page !== $max_page) { ?>
-                <a href="/index.php?page=<?php echo $next_page_button_number ?>"><button class="btn-small">▶</button></a>
+                <?php if(($page !== $max_page)&&(!($next_page > $max_page))) { ?>
+                <a href="/index.php?page=<?php echo $next_page ?>"><button class="btn-small">▶</button></a>
                 <?php } ?>
             </div>
         </div>
