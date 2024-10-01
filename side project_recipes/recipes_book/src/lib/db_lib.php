@@ -19,6 +19,8 @@ function my_board_select_pagination(PDO $conn, array $arr_param) {
         ."      * "
         ." FROM "
         ."      board "
+        ." WHERE "
+        ."      deleted_at IS NULL "
         ." ORDER BY "
         ."      created_at DESC "
         ."      ,id DESC "
@@ -103,20 +105,87 @@ function my_board_select_id(PDO $conn, array $arr_param) {
     return $stmt->fetch();
 }
 
-// function my_board_id_count(PDO $conn) {
-//     $sql = 
-//         " SELECT "
-//         ."      COUNT(*) id_cnt "
-//         ." FROM "
-//         ."      board "
-//         ." WHERE "
-//         ."       deleted_at IS NULL "
-//     ;
+function my_board_update(PDO $conn, array $arr_param) {
+    $sql =
+        " UPDATE board "
+        ." SET "
+        ."      title = :title "
+        ."      ,content = :content "
+        ."      ,image = :image "
+        ."      ,updated_at = NOW() "
+        ." WHERE "
+        ."      id = :id "
+    ;
 
-//     $stmt = $conn->query($sql);
-//     $result = $stmt->fetch();
+    $stmt = $conn->prepare($sql);
+    $result_flg = $stmt->execute($arr_param);
 
-//     return $result["id_cnt"];
-// }
+    if(!$result_flg) {
+        throw new Exception("쿼리 실행 실패");
+    }
+
+    $result_cnt = $stmt->rowCount();
+    
+    if($result_cnt !== 1) {
+        throw new Exception("Insert 갯수 오류");
+    }
+
+    return true;
+}
+
+function my_board_delete(PDO $conn, array $arr_param) {
+    $sql =
+        " UPDATE board "
+        ." SET "
+        ."      updated_at = NOW() "
+        ."      ,deleted_at = NOW() "
+        ." WHERE "
+        ."      id = :id "
+    ;
+
+    $stmt = $conn->prepare($sql);
+    $result_flg = $stmt->execute($arr_param);
+
+    if(!$result_flg) {
+        throw new Exception("쿼리 실행 실패");
+    }
+
+    $result_cnt = $stmt->rowCount();
+    
+    if($result_cnt !== 1) {
+        throw new Exception("Insert 갯수 오류");
+    }
+
+    return true;
+}
+
+
+function my_board_update_not_img(PDO $conn, array $arr_param) {
+    $sql =
+        " UPDATE board "
+        ." SET "
+        ."      title = :title "
+        ."      ,content = :content "
+        ."      ,updated_at = NOW() "
+        ." WHERE "
+        ."      id = :id "
+    ;
+
+    $stmt = $conn->prepare($sql);
+    $result_flg = $stmt->execute($arr_param);
+
+    if(!$result_flg) {
+        throw new Exception("쿼리 실행 실패");
+    }
+
+    $result_cnt = $stmt->rowCount();
+    
+    if($result_cnt !== 1) {
+        throw new Exception("Insert 갯수 오류");
+    }
+
+    return true;
+}
+
 
 ?>
