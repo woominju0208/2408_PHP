@@ -52,7 +52,12 @@ try {
                 <!-- <a href=""><button class="btn-small content-btn"><</button></a> -->
 
                 <div class="content-img">
-                    <img class="img-insert" src=<?php echo $result["image"] ?>>
+                    <?php if(is_null($result["image"])) { ?>
+                    <img class="img-insert" src="/img/no-photo.avif">
+                    <?php } else { ?>
+                    <img class="img-insert" src=<?php echo 
+                    $result["image"] ?>>
+                    <?php } ?>
                 </div>
                 <div class="content-detail">
                     <div style="word-break: break-all;" class="content-detail-size">

@@ -90,3 +90,9 @@ main {
 .btn_selected {
     background-color: #df6666;
 }
+
+input,textarea {
+    font-family: "Dongle", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}

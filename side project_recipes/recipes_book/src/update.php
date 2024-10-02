@@ -134,7 +134,7 @@ try{
                     <div class="box title-box">
                         <div class="box-title">제목</div>
                         <div class="box-content">
-                            <input type="text" name="title" id="title" value="<?php echo $result["title"] ?>">
+                            <input type="text" name="title" id="title" value="<?php echo $result["title"] ?>" require maxlength="8">
                         </div>
                     </div>
                     <div class="box content-box">

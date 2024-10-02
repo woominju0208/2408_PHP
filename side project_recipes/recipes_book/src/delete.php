@@ -76,12 +76,18 @@ try{
             <div class="item">
                 <!-- <a href=""><button class="btn-small content-btn"><</button></a> -->
                 <div class="content-img">
+                    <?php if(is_null($result["image"])) { ?>
+                    <img class="img-insert" src="/img/no-photo.avif">
+                    <?php } else { ?>
                     <img class="img-insert" src=<?php echo $result["image"] ?>>
+                    <?php } ?>
                 </div>
                 <div class="content-detail">
-                    <div class="detail-title"><?php echo $result["title"] ?></div>
-                    <div class="detail-content"><?php echo $result["content"] ?></div>
-                    <div class="detail-created_at"><?php echo $result["created_at"] ?></div>
+                    <div style="word-break: break-all;" class="content-detail-size">
+                        <div class="detail-title"><?php echo $result["title"] ?></div>
+                        <div class="detail-content"><?php echo $result["content"] ?></div>
+                        <div class="detail-create_at"><?php echo $result["created_at"] ?></div>
+                    </div>
                 </div>
                 <!-- <a href=""><button class="btn-small content-btn">></button></a> -->
             </div>
@@ -90,6 +96,32 @@ try{
                         <input type="hidden" name="id" value="<?php echo $result["id"] ?>">
                         <button class="btn-small btn-eng" type="submit">삭제</button>
                         <a href="/detail.php?id=<?php echo $result["id"] ?>&page=<?php echo $page ?>"><button class="btn-small btn-eng" type="button">취소</button></a>
+                        <!--모달 팝업-->
+                        <div class="modal hidden">
+                            <div class="modal-overlay"></div>
+                            <div class="modal-content">
+                                <h3>삭제 페이지</h3>
+                                <p>정말로 삭제 하시겠습니까?</p>
+                                <div class="btn_modal">
+                                    <button type="submit" class="close_btn">삭제</button>
+                                    <button type="button" class="close_btn" id="close">닫기</button>
+                                </div>
+                            </div>
+                        </div>
+                        <script src="./modal.js"></script>
+
+
+                        <!-- <div class="modal">
+                            <div class="modal_popup">
+                                <h3>삭제 페이지</h3>
+                                <p>정말로 삭제 하시겠습니까?</p>
+                                <div class="btn_modal">
+                                    <button type="submit" class="close_btn">삭제</button>
+                                    <button type="button" class="close_btn">닫기</button>
+                                </div>
+                            </div>
+                        </div>
+                            <script src="./modal.js"></script> -->
                     </form>
                 </div>
     </main>

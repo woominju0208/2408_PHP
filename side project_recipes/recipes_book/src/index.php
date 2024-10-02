@@ -81,16 +81,19 @@ try {
                 <?php foreach($result as $item) { ?>
                     <a href="/detail.php?id=<?php echo $item["id"] ?>&page=<?php echo $page ?>">
                         <div class="list-content">
+                            <div class="content-id">
+                                <div><?php echo $item["id"] ?></div>
+                            </div>
                             <div class="content-img">
                                 <?php if(is_null($item["image"])) { ?>
-                                    <img class="img-insert" src="<?php MY_PATH_ROOT."img/noimg.gif" ?>">
+                                    <img class="img-insert" src="/img/no-photo.avif">
                                <?php } else { ?>
                                     <img class="img-insert" src= <?php echo $item["image"] ?>>
                                 <?php } ?>
                             </div>
                             <div class="list-content-title"><?php echo $item["title"] ?></div>
                             <div><?php echo $item["created_at"] ?></div>
-                            <button class="btn-content"><i class="fa-solid fa-arrow-right"></i></button>
+                            <!-- <button class="btn-content"><i class="fa-solid fa-arrow-right"></i></button> -->
                         </div>
                     </a>
                 <?php } ?>

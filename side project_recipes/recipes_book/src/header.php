@@ -11,7 +11,9 @@ require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
 </head>
 <body>
     <header>
-        <h2>Recipes Book</h2>
+        <a href="/">
+            <h2>Recipes Book</h2>
+        </a>
         <h1><span>M</span>ake<span>&nbsp;Y</span>our<span>&nbsp;R</span>ecipes</h1>
     </header>
 </body>
