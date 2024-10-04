@@ -105,5 +105,5 @@ VALUES
 ,('제목33','내용33','C:/Apache24/htdocs/img/1.jpg');
 ;
 
-ALTER TABLE board MODIFY COLUMN image VARCHAR(500)	NULL;
+ALTER TABLE board MODIFY COLUMN image VARCHAR(30)	NULL;
 

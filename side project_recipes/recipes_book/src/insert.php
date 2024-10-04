@@ -81,7 +81,7 @@ if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST"){
                     <div class="box title-box">
                         <div class="box-title">제목</div>
                         <div class="box-content">
-                            <input type="text" name="title" id="title" required maxlength="8">
+                            <input type="text" name="title" id="title" required maxlength="9">
                         </div>
                     </div>
                     <div class="box content-box">
