@@ -86,3 +86,7 @@ main {
     height: 40px;
     border-radius: 20px;
 }
+
+.btn_selected {
+    background-color: #bb4f4f;
+}
