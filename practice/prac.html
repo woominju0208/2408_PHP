@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./prac.css">
+</head>
+<body>
+   <form action="">
+    <fieldset>
+        <h1 id="title">프런트엔드 개발자 지원서</h1>
+        <h1 class="title1">웹 개발 기초</h1>
+        <p>HTML CSS 자바스크립트의 기술을 이해하고 실무 경험이 있는 분을 찾습니다.</p>
+        <hr>
+        <h4>개인 정보</h4>
+        <label for="id">이름</label>
+        <input type="text" id="id" name="id" placeholder="공백 없이 입력하세요">
+        <br>
+        <label for="tel">연락처</label>
+        <input type="tel" id="tel" name="tel">
+        <h4>지원 분야</h4>
+        <input type="radio" name="1" id="web">
+        <label for="web">웹 퍼블리싱</label>
+        <br>
+        <input type="radio" name="1" id="web dev">
+        <label for="web dev">웹 퍼블리싱 개발</label>
+        <br>
+        <input type="radio" name="1" id="dev env">
+        <label for="dev env">개발 환경 개선</label>
+        <br>
+        <label>가입경로</label>
+        <select name="가입 경로">
+        <option value="0">기타</option>
+        <option value="1">기타</option>
+        <option value="2">기타</option>
+        </select>
+
+
+        <p><strong>지원 동기</strong></p>
+        <textarea name="memo" cols="60" rows="5" placeholder="본사 지원 동기를 간략히 써 주세요."></textarea>
+        <br>
+        <button type="submit">접수하기</button>
+        <button type="reset">다시 쓰기</button>
+    </fieldset>
+   </form>
+</body>
+</html>

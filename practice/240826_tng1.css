@@ -1,0 +1,3 @@
+.container :nth-child(-n+2) {
+    background-color: bisque;
+}

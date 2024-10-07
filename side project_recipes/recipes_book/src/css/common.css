@@ -19,6 +19,13 @@ header {
     font-style: normal;
 }
 
+body {
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none
+}
+
 h2 {
     text-align: center;
     margin-top: 40px;

@@ -71,10 +71,12 @@ function my_board_insert(PDO $conn, array $arr_param) {
         " INSERT INTO board( "
         ."      title "
         ."      ,content "
+        ."      ,img "
         ." ) "
         ." VALUES( "
         ."      :title "
         ."      ,:content "
+        ."      ,:img "
         ." ) "
     ;
 
@@ -118,13 +120,16 @@ function my_board_select_id(PDO $conn, array $arr_param) {
 // board 테이블 update 처리
 function my_board_update(PDO $conn, array $arr_param) {
     $sql =
-    " UPDATE board "
-    ." SET "
-    ."      title = :title"
-    ."      ,content = :content "
-    ."      ,updated_at = NOW() "
-    ." WHERE "
-    ."      id = :id "
+        " UPDATE board "
+        ." SET "
+        ."      title = :title"
+        ."      ,content = :content "
+        ."      ,updated_at = NOW() "
+        .(isset($arr_param["img"]) ? "      ,img = :img " : "")
+        // 동적쿼리 작성 이미지를 넣을땐 적용되고 안넣을땐 적용x
+        // ."      ,img = :img " : 정적쿼리로 배열의 갯수가 맞지 않기때문에 x
+        ." WHERE "
+        ."      id = :id "
     ;
 
     $stmt = $conn->prepare($sql);

@@ -43,6 +43,9 @@ try {
         // content 획득
         $content = isset($_POST["content"]) ? $_POST["content"] : "";
 
+        $file = $_FILES["file"];
+        // var_dump($file); exit;
+
 // 수정시 content 내용 수정했는데 사라짐 > 오류 발생시 post처리 확인 content획득 뒤에 echo$content exit; 를 입력해서 값이 출력안되면 post에 content 획득 부분 오류
 // 오류시 틀린부분 하단 html확인 후에 위에 관련 php 확인
         if($id < 1 || $title === "") {
@@ -59,6 +62,36 @@ try {
             ,"title" => $title
             ,"content" => $content
         ];
+        // var_dump($file); exit;
+        // file 저장 처리
+        if($file["name"] !== "") {
+
+            // 기존 파일 삭제
+            $arr_prepare_select = [
+                "id" => $id
+            ];
+
+            $result = my_board_select_id($conn, $arr_prepare_select);
+            if(!is_null($result["img"])) {
+                unlink(MY_PATH_ROOT.$result["img"]);
+                // unlink: 파일 삭제 
+            }
+
+            // 새 파일 저장
+            $type = explode("/", $file["type"]);
+            $extension = $type[1];
+            $file_name = uniqid().".".$extension;
+            // var_dump($file_name); exit;
+            $file_path = "/img/".$file_name;
+    
+            move_uploaded_file($file["tmp_name"], MY_PATH_ROOT.$file_path);
+
+            $arr_prepare["img"] = $file_path; 
+            // 이미지가 빈 문자열이 아닐시 $arr_prepare에 이미지를 넣어준다.(db에 이미지 경로 저장)
+        } 
+
+
+        
 
         my_board_update($conn, $arr_prepare);
 
@@ -92,11 +125,11 @@ try {
 </head>
 <body>
     <?php
-        require_once(MY_PATH_ROOT."header.php");
+        require_once(MY_PATH_HEADER);
     ?>
     <main>
         <!-- 나 자신에서 업데이트 해야하기 때문에 주소가 같은 update이다. -->
-        <form action="/update.php" method="post">
+        <form action="/update.php" method="post" enctype="multipart/form-data">
             <!-- submit 처리를 실행했을때 action이 detail로 하면 detail엔 post가 없기 때문에 form 태그 위치에 같은 위치인 update.php 적용 상단 post실행-->
             <input type="hidden" name="id" value="<?php echo $result["id"] ?>">
             <input type="hidden" name="page" value="<?php echo $page ?>">
@@ -115,6 +148,12 @@ try {
                 <div class="box_title">내용</div>
                 <div class="box_content">
                     <textarea name="content" id="content"><?php echo $result["content"] ?></textarea>
+                </div>
+            </div>
+            <div class="box">
+                <div class="box_title">이미지</div>
+                <div class="box_content">
+                    <input type="file" name="file" id="file">
                 </div>
             </div>
             <div class="main_footer">

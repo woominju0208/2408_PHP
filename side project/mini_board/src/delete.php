@@ -73,7 +73,7 @@ try {
 </head>
 <body>
     <?php
-        require_once(MY_PATH_ROOT."header.php");
+        require_once(MY_PATH_HEADER);
     ?>
     <main>
         <div class="main_header">
@@ -97,6 +97,12 @@ try {
                 <div class="box_title">내용</div>
                 <div class="box_content"><?php echo $result["content"] ?></div>
             </div>
+            <?php if(!is_null($result["img"])) { ?>
+                <div class="box">
+                    <div class="box_title">이미지</div>
+                    <div class="box_content"><img src="<?php echo $result["img"] ?>" alt=""></div>
+                </div>
+            <?php } ?>
         </div>
         <div class="main_footer">
             <!-- a태그는 무조건 GET 메소드로 이동한다  -->

@@ -41,7 +41,7 @@ try{
 </head>
 <body>
     <?php
-        require_once(MY_PATH_ROOT."header.php");
+        require_once(MY_PATH_HEADER);
     ?>
     <main>
         <div class="main_content">
@@ -61,6 +61,12 @@ try{
                 <div class="box_title">작성일자</div>
                 <div class="box_content"><?php echo $result["created_at"] ?></div>
             </div>
+            <?php if(!is_null($result["img"])) { ?>
+                <div class="box">
+                    <div class="box_title">이미지</div>
+                    <div class="box_content"><img src="<?php echo $result["img"] ?>" alt=""></div>
+                </div>
+            <?php } ?>
  <!-- textarea로 isnert쪽을 적어야 숫자,문자 전부 영역밖을 나가지않는다. 그냥 div로 입력해서 숫자일때 영역 나감  -->
         </div>
         <div class="main_footer">

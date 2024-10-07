@@ -140,3 +140,18 @@ label {
     position: absolute;
 }
 
+.image-show-prev {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+}
+
+.main-footer {
+    background-color: #ffefef;
+    width: 900px;
+    border-radius: 0 0 20px 20px ;
+    text-align: center;
+    margin: 20px 0 40px 0;
+    padding: 10px 0;
+}
+

@@ -42,6 +42,8 @@
     margin: 10px;
     padding: 10px 20px;
     border-radius: 20px;
+    max-width: 170px;
+    max-height: 370px;
 }
 
 .list-content-title {
@@ -61,6 +63,7 @@
 
 .content-img:hover {
     border: 5px solid #FF7979;
+    
 }
 
 .img-insert {
@@ -82,3 +85,14 @@
 .content-btn {
     margin: 100px 10px 0 10px;
 }
+
+.content-id {
+    width: 40px;
+    height: 30px;
+    font-size: 20px;
+    border-radius: 20%;
+    color: #fff;
+    background-color: #ff9f9f;
+    text-align: center;
+}
+

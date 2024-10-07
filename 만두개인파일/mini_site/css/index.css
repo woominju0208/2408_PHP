@@ -1,4 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+  
+  @keyframes appear{
+    from {
+      opacity: 0;
+    }
+  
+    to{
+      opacity: 1;
+    }
+  }
+  
+  @keyframes appear_from_bottom{
+    0%{
+      transform: translateY(150px);
+      opacity: 0;
+    }
+  
+    100%{
+      opacity: 1;
+    }
+  }
+
 * {
     margin: 0;
     padding: 0;
@@ -7,6 +29,11 @@
     font-optical-sizing: auto;
     font-weight: weight;
     font-style: normal;
+
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none
 }
 
 ul,li {
@@ -213,15 +240,15 @@ a {
 
 .home-image-container .iphone-wrap:first-of-type {
     display: block;
-    /* opacity: 0; */
+    opacity: 0;
     top: 0;
     right: -104px;
 }
 
-.home_image_container .iphone_wrap:last-of-type{
-    /* opacity:0; */
-    bottom:0;
-    left:-104px; 
+.home-image-container .iphone-wrap:last-of-type{
+    opacity: 0;
+    bottom: 0;
+    left: -104px; 
   }
 
 .iphone-wrap .image-item1 {
@@ -254,17 +281,17 @@ a {
     height: 100%;
 }
 
+.home-text {
+    font-size: 30px;
+    opacity: 0;
+}
+
 .home-text2 {
-    /* opacity: 0; */
+    opacity: 0;
     position: absolute;
     bottom: 166px;
     right: 0;
     font-size: 1.1rem;
-}
-
-.home-text {
-    font-size: 30px;
-    /* opacity: 0; */
 }
 
 .home-text > h1 {
@@ -328,10 +355,25 @@ a {
 
   .home2_content{
     margin-left: 40px;
-    /* opacity:0;  */
+    opacity:0; 
   }
 
 .home2-content > h1 {
     color: #107fff;
-
 }
+
+/* @keyframes blink {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+.btn-intro{
+    animation: blink 1s infinite;
+} */

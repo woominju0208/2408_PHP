@@ -61,7 +61,7 @@ try {
     <title>메인 페이지</title>
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/index.css">
-    <script src="https://kit.fontawesome.com/31ae0d76f8.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/31ae0d76f8.js" crossorigin="anonymous"></script> -->
 </head>
 <body>
     <?php

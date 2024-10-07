@@ -1,0 +1,50 @@
+#background {
+    background-color: #000000;
+}
+
+h1 {
+    color: #ffffff;
+    }
+    
+
+h3 {
+    color: #ffffff;
+}
+
+h2 {
+    font-size: 1.5em;
+    color: #ff0000;
+    text-align: center;
+}
+
+p {
+    font-size: 1.2em;
+    line-height: 2em;
+    font-weight: 900;
+    text-align: center;
+}
+
+.accent {
+    color: #0000ff;
+}
+
+.smallext {
+    font-size: 0.7em;
+}
+
+[class^=container] {
+    margin: 0;
+    padding: 0;
+    float: left;
+    background-color: #616196;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+}
+.container:nth-child(odd) {
+    background-color: #ff0000;
+}
+
+[class*=container] {
+    background-color: rgb(227, 25, 253);
+}

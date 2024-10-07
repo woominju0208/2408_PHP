@@ -49,7 +49,7 @@ if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
 </head>
 <body>
     <?php
-        require_once(MY_PATH_ROOT."header.php");
+        require_once(MY_PATH_HEADER);
     ?>
     <main>
         <!-- 내용을 insert하면 내 insert페이지로 이동 insert하기 때문에 method post -->
