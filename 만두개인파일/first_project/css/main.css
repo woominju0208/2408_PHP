@@ -1,0 +1,116 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(../img/pattern.jfif);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+}
+
+a {
+    text-decoration: none;
+}
+
+.logo {
+    background-image: url(../img/notes.jfif);
+    width: 200px;
+    height: 100px;
+    margin: 10px 10px 10px 10px;
+}
+
+.main_container {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.main_box {
+    background-color: #97B47D;
+    box-shadow: -15px 0 0 #314e17, 15px 0 0 #314e17, 0 10px 10px rgb(89, 99, 86);
+    width: 1100px;
+    height: 700px;
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: 1fr,1fr;
+}
+
+.main_left {
+    background-image: linear-gradient(to right, #DFC9B3, #FFEFD7);
+    width: 520px;
+    height: 650px;
+    margin-top: 25px;
+    margin-left: 30px;
+    box-shadow: 0 10px 10px rgb(89, 99, 86);
+}
+
+.main_left_img1 > img {
+    background-repeat: no-repeat;
+    width: 400px;
+    height: 450px;
+    padding: 20px;
+    z-index: 1;
+}
+
+.main_left_img2 > img {
+    width: 300px;
+    height: 200px;
+    margin: 0 0 200px 200px;
+    transform: rotate(20deg);
+    z-index: 2;
+    position: absolute;
+    bottom: 50px;
+}
+
+.main_left_img3 > img {
+    width: 200px;
+    height: 150px;
+    margin: 0 0 200px 100px;
+    transform: rotate(-10deg);
+    z-index: 2;
+    position: absolute;
+}
+
+.main_right {
+    background-image: linear-gradient(to right, #D6C0AB, #FFEFD7);
+    width: 520px;
+    height: 650px;
+    margin-left: 550px;
+    margin-top: -663px;
+    box-shadow: 0 10px 10px rgb(89, 99, 86);
+    padding: 70px 30px;
+}
+
+.main_right_content {
+    display: flex;
+    justify-content: space-between;
+    background-color: #7aa852;
+    color: #fff;
+    border-bottom: 5px solid#63a02e;
+    padding: 10px;
+    margin-bottom: 30px;
+    font-size: 15px;
+    font-weight: 500;
+    box-shadow: 0 5px 10px rgb(143, 155, 140);
+}
+
+.main_right .page {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+    margin-top: 150px;
+}
+
+.page .page_left {
+    display: flex;
+    padding-left: 5px;
+}
+
+.page .page_right {
+    display: flex;
+}
