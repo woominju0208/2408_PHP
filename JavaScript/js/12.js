@@ -83,3 +83,38 @@ OBJ1.mySum(1,2);
 // 자바스크립트는 함수안에 함수를 적을수 있다.
 // 함수안에 함수를 선언할순 있지만 호출을 할순없다.
 // 부모객체 안에선 함수를 사용할수 있지만 {} 밖을 나가면 사용할수 x
+
+
+
+// ----------------------
+// 즉시실행 함수
+// ----------------------
+// 함수를 정의하는것과 동시에 실행도 함
+// 단 한번만 호출함
+// 요즘은 새로 만들지 않고 만들어진걸 가져오기만 해서 잘 사용하진 않는다.
+const execFnc = (function(a,b) {
+    return a + b;
+})(5,10);
+// console에 execFnc 인 함수이름만 적으면 출력
+
+
+// ----------------------
+// 콜백 함수(자주 씀)
+// ----------------------
+// 다른 함수의 파라미터로 전달되어 특정 조건에 따라 호출되는 함수
+// 많은곳에 쓰이고 유지보수를 쉽게 하기 위해 모듈화를 함
+function myCallBack() {
+    console.log('myCallBack');
+}
+
+function myChkPrint(callBack, flg) {
+    if(flg) {
+        callBack();
+    }
+}
+
+myChkPrint(myCallBack,true);     // myCallBack
+myChkPrint(myCallBack,false);     // undefined
+
+// 이런식으로 위에 함수선언을 따로안하고 함수안에 함수를 일회성으로 만들기도 한다.
+myChkPrint(() => 'ttt', true);
