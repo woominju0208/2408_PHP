@@ -81,7 +81,7 @@ console.log(resultPop);   // 5 출력 , ARR_POP에서 5 제거
 // unshift()
 // 원본 배열의 첫번째 요소를 추가, 변경된 length를 반환, 원본변경
 const ARR_UNSHIFT = [1, 2, 3];
-let resultUnshift = ARR_UNSHIFT.unshift(100,200);
+let resultUnshift = ARR_UNSHIFT.unshift(100);
 console.log(resultUnshift);    // 4출력 앞에 100추가로 length 4출력
 ARR_UNSHIFT.unshift(300,400,555,666);  // 여러개도 추가 가능
 
