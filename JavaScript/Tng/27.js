@@ -1,4 +1,3 @@
-// 원본은 보존하면서 오름차순 정렬 해주세요.
 // 배열을 복사하려면 [...배열이름] 을 하면 복사
 // const ARR1 = [ 6, 3, 5, 8, 92, 3, 7, 5, 100, 80, 40 ];
 // const COPY_ARR1 = [...ARR1];
@@ -6,8 +5,9 @@
 // console.log(resultSort);
 // console.log(ARR1);
 
-// const COPY_ARR1 = ARR1; 은 값 복사가 아니라 주소값을 복사해 숫자를 바꾸면 같이 바뀜
+// 원본은 보존하면서 오름차순 정렬 해주세요.
 const ARR1 = [ 6, 3, 5, 8, 92, 3, 7, 5, 100, 80, 40 ];
+// const COPY_ARR1 = ARR1; 은 값 복사가 아니라 주소값을 복사해 숫자를 바꾸면 같이 바뀜
 const COPY_ARR1 = [...ARR1];
 let resultSort1 = COPY_ARR1.filter((val, index) => {
     return COPY_ARR1.indexOf(val) === index;

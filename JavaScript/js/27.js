@@ -238,7 +238,7 @@ let resultFilter2 = arrFilter.filter(num => {
 // ---------------------
 
 // some()
-// 배열의 모든 요소애 대해 콜백함수를 반복 실행하고,
+// 배열의 모든 요소에 대해 콜백함수를 반복 실행하고,
 // 조건에 만족하는 결과가 하나라도 있으면 true,
 // 만족하는 결과가 하나도 없으면 false를 리턴
 
@@ -277,4 +277,4 @@ arrForeach.forEach((val, idx) => {
 });
 
 // 이것말고도 배열객체들이 많다..
-// ever,some,filte,push,pop를 자주쓴다
+// every,some,filter,push,pop를 자주쓴다
