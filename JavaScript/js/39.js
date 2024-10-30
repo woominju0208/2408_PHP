@@ -113,6 +113,6 @@ FOODS.appendChild(NEW_LI);      // li 제일 끝에 '떡볶이' 추가
 FOODS.removeChild(NEW_LI);      // li 제일 끝에 '떡볶이' 삭제
 
 // insertBefore(새로운노드, 기준노드) : 해당 부모 노드의 자식인 기준 노드의 앞에 새로운 노드를 추가
-// const TARGET = document.querySelector('#foods :nth-child(6)');
-// FOODS.insertBefore(NEW_LI, TARGET);
-FOODS.insertBefore(NEW_LI, SICK);   // SICK가 유산균으로 유산균 위에 처리 된다. 
+const TARGET = document.querySelector('#foods :nth-child(6)');
+FOODS.insertBefore(NEW_LI, TARGET);
+// FOODS.insertBefore(NEW_LI, SICK);   // SICK가 유산균으로 유산균 위에 처리 된다. 

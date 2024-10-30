@@ -1,0 +1,32 @@
+.title-click {
+    color: red;
+}
+
+body {
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+  }
+
+  .modal_container {
+    width: 100vw;
+    height: 100vw;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+.display_none {
+    display: none;
+}
+
+.modal_item {
+    width: 300px;
+    height: 300px;
+    margin: auto;
+    background-color: #fff;
+    border-radius: 5px;
+}

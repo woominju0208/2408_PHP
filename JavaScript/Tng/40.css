@@ -1,0 +1,29 @@
+.box_container {
+    width: 100vw;
+    height: 100vw;
+    position: absolute;
+    margin: auto;
+    left: 100px;
+    top: 500px;
+}
+
+.box_near {
+    width: 150px;
+    height: 150px;
+    background-color: blueviolet;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: pink;
+}
+
+.display_none {
+    /* visibility: hidden; */
+    background-color: transparent;
+    /* opacity: 0; */
+}
