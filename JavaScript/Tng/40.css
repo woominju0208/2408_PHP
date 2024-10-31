@@ -1,4 +1,4 @@
-.box_container {
+/* .box_container {
     width: 100vw;
     height: 100vw;
     position: absolute;
@@ -23,7 +23,26 @@
 }
 
 .display_none {
-    /* visibility: hidden; */
     background-color: transparent;
-    /* opacity: 0; */
+} */
+
+.container {
+    width: 100px;
+    height: 100px;
+    background-color: #f9c4c4;
+    position: absolute;
+    /* relative 부모요소는 body가 되어 움직인다. */
+    top: 300;
+    left: 300;
+}
+
+.box {
+    width: 70px;
+    height: 70px;
+    margin: 15px;
+    background-color: transparent;
+}
+
+.busted {
+    background-color: rgb(69, 28, 134);
 }
