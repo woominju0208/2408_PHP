@@ -1,10 +1,12 @@
 <?php
 namespace Controllers;
 
+use Lib\Auth;
 use Models\BoardsCategory;
 
 // Controller : 부모클래스
-// UserController : 자식 클래스 
+// UserController : 자식 클래스
+// BoardController : 자식 클래스  
 // UserController말고도 다른 Controller도 많이 생긴다.
 
 class Controller {
@@ -24,6 +26,8 @@ class Controller {
         }
 
         // 유저 로그인 및 권한체크
+        // ::  : class 속 const, static 변수에 접근할 수 있는 연산자.
+        Auth::chkAuthorization();
 
         // 헤더 드롭다운 리스트 획득
         $boardsCategoryModel = new BoardsCategory();

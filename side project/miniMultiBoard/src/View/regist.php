@@ -3,36 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로그인페이지</title>
+    <title>회원가입페이지</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body class="vh-100">
     <!-- header -->
-     <header>
-         <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
-             <div class="container-fluid">
-                 <a class="navbar-brand" href="#">미니보드</a>
-             </div>
-         </nav>
-     </header>
+     <?php require_once('View/inc/header.php'); ?>
     <!-- main -->
     <main class="d-flex justify-content-center align-items-center h-75">
-        <form style="width: 300px;" action="./login.html">
-            <div id="errorMsg" class="form-text text-danger">에러에러에러</div>
+        <form style="width: 300px;" action="/regist" method="POST">
+            <?php require_once('View/inc/errorMsg.php'); ?>
             <div class="mb-3">
-              <label for="id" class="form-label">아이디</label>
-              <input type="email" class="form-control" id="id" name="id">
+              <label for="u_email" class="form-label">아이디</label>
+              <input type="email" class="form-control" id="u_email" name="u_email" value="<?php echo $this->userInfo['u_email'] ?>">
             </div>
             <div class="mb-3">
-              <label for="password" class="form-label">비밀번호</label>
-              <input type="password" class="form-control" id="password" name="password">
+              <label for="u_password" class="form-label">비밀번호</label>
+              <input type="password" class="form-control" id="u_password" name="u_password">
             </div>
             <div class="mb-3">
-                <label for="name" class="form-label">이름</label>
-                <input type="text" class="form-control" id="name" name="name">
+              <label for="u_password_chk" class="form-label">비밀번호 확인</label>
+              <input type="password" class="form-control" id="u_password_chk" name="u_password_chk">
+            </div>
+            <div class="mb-3">
+                <label for="u_name" class="form-label">이름</label>
+                <input type="text" class="form-control" id="u_name" name="u_name" value="<?php echo $this->userInfo['u_name'] ?>">
               </div>
             <button type="submit" class="btn btn-dark w-100 mb-3">가입 완료</button>
-            <a href="./login.html" class="btn btn-secondary w-100">취소</a>
+            <a href="/login" class="btn btn-secondary w-100">취소</a>
           </form>
     </main>
     <!-- footer -->

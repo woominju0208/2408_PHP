@@ -8,6 +8,7 @@ use Models\BoardsCategory;
 class BoardController extends Controller {
     private $arrBoardList = [];     // 게시글 정보 리스트
     private $boardName = '';        // 게시판 이름
+    protected $boardType = '';      // 게시판 코드
 
     // getter : 데이터를 가져옴
     public function getArrBoardList() {
@@ -31,6 +32,7 @@ class BoardController extends Controller {
         $requestData = [
             'bc_type' => isset($_GET['bc_type']) ? $_GET['bc_type'] : '0'
         ];
+        $this->boardType = $requestData['bc_type'];
 
         // 게시글 정보 획득
         $boardModel = new Board();
@@ -43,5 +45,52 @@ class BoardController extends Controller {
         
 
         return 'board.php';
+    }
+    // 상세페이지
+    public function show() {
+        $requestData = [
+            'b_id' => $_GET['b_id']
+        ];
+
+        // 게시글 정보 조회
+        $boardModel = new Board();
+        $resultBoard = $boardModel->getBoardDetail($requestData);
+
+        // JSON 변환
+        // Ajax를 사용하는데 거기에 axios라는 라이브러리를 사용하고 JSON형태로 데이터를 보내줄것이다.
+        $responseData = json_encode($resultBoard);
+
+        // json타입으로 보냈다는걸 명시해주는 문법(이대로 적어야함) 
+        header('Content-type: application/json');   // 데이터 타입을 json파일로 보내준다는 의미
+        echo $responseData;
+        exit;
+    }
+
+    // 작성 페이지로 이동
+    public function create() {
+        return 'insert.php';
+    }
+
+    // 작성 처리
+    public function store() {
+        $requestData = [
+            'b_title' => $_POST['b_title']
+            ,'b_content' => $_POST['b_content']
+            ,'b_img' => ''
+        ];
+
+        $requestData['b_img'] = $this->saveImg($_FILES['file']);
+
+
+    }
+
+    // 이미지업로드시 이름 랜덤 변경후 db저장
+    private function saveImg($file) {
+        $type = explode('/', $file['type']);    // ['IMAGE', '확장자']
+        $fileName = uniqid().'.'.$type[1];      // 2kh232kjkj2323.확장자
+        $filePath = _PATH_IMG.'/'.$fileName;    //  /view/img/2kh232kjkj2323.확장자
+        move_uploaded_file($file['tmp_name'], _ROOT.$filePath);     // 파일복사
+
+        return $filePath;
     }
 }
