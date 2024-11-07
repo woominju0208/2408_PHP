@@ -31,6 +31,8 @@
             </div>
             <button type="submit" class="btn btn-dark w-100 mb-3">작성</button>
             <a href="/boards" class="btn btn-secondary w-100">취소</a>
+            <!-- input hidden으로 value값에 게시판 보드타입 넘겨주기 -->
+            <input type="hidden" name="bc_type" value="<?php echo $this->boardType ?>">
           </form>
     </main>
     <!-- footer -->

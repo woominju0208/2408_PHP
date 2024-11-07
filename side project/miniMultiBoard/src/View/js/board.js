@@ -30,7 +30,7 @@
     });
 
     document.querySelector('#btnInsert').addEventListener('click', () => {
-        window.location = '/boards/insert';
+        window.location = '/boards/insert?bc_type=' + document.querySelector('#inputBoardType').value;
     });
 
 })();
