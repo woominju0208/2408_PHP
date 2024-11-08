@@ -1,7 +1,12 @@
 <?php
 
+use App\Http\Controllers\QueryController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\TestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+use function Ramsey\Uuid\v1;
 
 /*
 |--------------------------------------------------------------------------
@@ -188,3 +193,70 @@ Route::prefix('/users')->group(function() {
         return 'DELETE : /users';
     });
 });
+
+
+// --------------------------
+// 컨트롤러(controller) 연결
+// --------------------------
+// 커맨드로 컨트롤러 생성: php artisan make:controller 컨트롤러명
+Route::get('/test', [TestController::class, 'index']);      // get('/지어줄 이름', [파일이름::class, '사용할 메소드 이름']);
+
+// Route::get('/task', [TaskController::class, 'index']);
+// Route::get('/task/create', [TaskController::class, 'create']);
+// Route::post('/task', [TaskController::class, 'store']);
+// Route::get('/task/{id}', [TaskController::class, 'show']);
+// Route::get('/task/{id}/edit', [TaskController::class, 'edit']);
+// Route::put('/task/{id}', [TaskController::class, 'update']);
+// Route::delete('/task/{id}', [TaskController::class, 'destroy']);
+
+// 위에 task경로로 직접 적어둔 여러 경로들을 한번에 만듬
+// 직접 적어도 되고 이런식으로 자동생성을 써도 된다.
+// Route::resource('/task', TaskController::class);
+Route::resource('/task', TaskController::class)->only(['index', 'create']); // 사용할 액션 메소드 제한 ->only([]) 안에 사용할 액션 메소드들을 적어준다.
+// Route::resource('/task', TaskController::class)->except(['index', 'create']);   // 사용안할 액션 메소드 제한 ->except([]) 안에 사용할 액션 메소드들을 적어준다.(only 반대)
+// except로 create를 제외했는데 url에 task/create를 치면 세그먼트 파라미터로 인식되서 테스크 쇼가 출력된다. 
+
+
+
+// GET|HEAD        task ................................................................................................ task.index › TaskController@index  
+// POST            task ................................................................................................ task.store › TaskController@store  
+// GET|HEAD        task/create ......................................................................................... task.create › TaskController@create  
+// GET|HEAD        task/{task} ......................................................................................... task.show › TaskController@show  
+// PUT|PATCH       task/{task} ......................................................................................... task.update › TaskController@update  
+// DELETE          task/{task} ......................................................................................... task.destroy › TaskController@destroy  
+// GET|HEAD        task/{task}/edit .................................................................................... task.edit › TaskController@edit  
+
+
+// --------------------------
+// 블레이드 템플릿용
+// html내에 php열고 닫고 할 필요없는 가독성을 높이는 템플릿
+// --------------------------
+Route::get('/edu', function() {
+    return view('edu')
+            ->with('data', ['name' => '홍길동', 'content' => "<script>alert('tt')</script>"]);
+});
+
+
+// board.blade.php 연결
+Route::get('/boards', function() {
+    return view('board');
+});
+
+// extends.blade.php 연결
+Route::get('/extends', function() {
+    $result = [
+        ['id' => 1, 'name' => '홍길동', 'gender' => 'M']
+        ,['id' => 2, 'name' => '갑순이', 'gender' => 'F']
+        ,['id' => 3, 'name' => '갑돌이', 'gender' => 'M']
+    ];
+
+    return view('extends')
+                ->with('data', $result)
+                ->with('data2', []);
+});
+
+
+// ------------------------------
+// 쿼리빌더 연습용
+// ------------------------------
+Route::get('/query', [QueryController::class, 'index']);
