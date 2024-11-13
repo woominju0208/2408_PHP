@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BoardController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +23,13 @@ Route::get('/', function () {
 
 // 로그인페이지 /login 이동
 Route::get('/login', [UserController::class, 'goLogin'])->name('goLogin');
+// 로그인 관련
+Route::post('/login', [UserController::class, 'login'])->name('login');
+// 로그아웃
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+
+
+// 게시판관련 (이동)
+// ->except([]) : update, edit action method 제외
+Route::resource('/boards', BoardController::class)->except(['update', 'edit']);
+
