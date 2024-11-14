@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Board;
+use Faker\Provider\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
+use Throwable;
 
 class BoardController extends Controller
 {
@@ -34,9 +38,8 @@ class BoardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()    // 작성페이지로 이동 새로운 글 생성(move insert)
-    {
-        //
+    public function create(){    // 작성페이지로 이동 새로운 글 생성(move insert)
+        return view('boardInsert');
     }
 
     /**
@@ -47,7 +50,52 @@ class BoardController extends Controller
      */
     public function store(Request $request)     // 실제로 작성하는 곳(insert)
     {
-        //
+        // 유효성 검사
+        $validator = Validator::make(
+            $request->only('b_title', 'b_content', 'file')
+                ,[
+                    'b_title' => ['required', 'max:50']
+                    ,'b_content' => ['required', 'max:200']
+                    ,'file' => ['required','image']
+                ]
+            );
+
+        if($validator->fails()) {
+            return redirect()
+            ->route('get.boards')
+            ->withErrors($validator->errors());
+        }
+
+        // 이미지 파일 처리
+        if($request->hasFile('file')) {
+            $file = $request->file('file');
+
+            // 파일 이름을 저장 (고유 이름으로 저장)
+            $imagePath = $file->store('file', 'public');
+
+            $imageRecord = new Image();
+            $imageRecord->path = $imagePath;
+            $imageRecord->save();
+
+            return back();
+        }
+        
+
+        // 게시글 작성 처리
+         // 데이터베이스 이미지경로 저장
+        try{
+            DB::beginTransaction();
+            $user = Board::create([
+                'b_title' => $request->b_title
+                ,'b_content' => $request->b_content
+                // ,'file' => $request->$imagePath
+            ]);
+            DB::commit();
+        }catch(Throwable $th) {
+            DB::rollback();
+        }
+        // 리턴
+        return redirect()->route('boards.index');
     }
 
     /**

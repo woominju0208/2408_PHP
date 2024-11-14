@@ -29,6 +29,7 @@
         });
     });
 
+    // svg 클릭시 게시글작성으로 이동
     document.querySelector('#btnInsert').addEventListener('click', () => {
         window.location = '/boards/insert?bc_type=' + document.querySelector('#inputBoardType').value;
     });

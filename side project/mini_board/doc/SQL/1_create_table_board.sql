@@ -22,5 +22,59 @@ CREATE TABLE board (
 ;	
 
 
+SELECT *
+FROM users
+WHERE YEAR(created_at) = '2024';
 
-	 
+SELECT *
+FROM users
+WHERE created_at >= '2024-01-01 00:00:00'
+	AND created_at <= '2024-12-31 23:59:59';
+	
+SELECT 
+		bc_type
+		,COUNT(*) cnt
+FROM boards
+WHERE deleted_at IS NULL
+GROUP BY bc_type
+HAVING bc_type = 0;
+
+SELECT *
+FROM boards
+WHERE
+	(b_title LIKE '%자유%'
+	OR b_title LIKE '%질문%')
+	AND deleted_at IS null
+;
+
+-- 게시글을 쓴 게시판보드이름,작성자,게시글제목
+SELECT
+	boards_category.bc_name 
+	,boards.b_title AS '제목'
+	,users.u_name	AS '작성자'
+FROM boards
+JOIN boards_category
+	ON boards.bc_type = boards_category.bc_type
+JOIN users
+	ON boards.u_id = users.u_id
+	WHERE users.deleted_at IS NULL
+		AND boards.deleted_at IS NULL
+;
+
+SELECT
+	boards.b_title
+	,boards.b_content
+	,users.u_name
+FROM boards
+	INNER JOIN users
+		ON boards.u_id = users.u_id
+		WHERE users.deleted_at IS NULL
+;
+
+-- ---------------------------------------
+-- boardList 게시판 정보 출력
+SELECT *
+FROM boards
+WHERE deleted_at IS NULL
+ORDER BY created_at DESC, b_id DESC 
+;
