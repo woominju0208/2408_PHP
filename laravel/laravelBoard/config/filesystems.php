@@ -32,7 +32,8 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app'),
+            // 'root' => storage_path('app'),
+            'root' => public_path(),
         ],
 
         'public' => [
@@ -42,6 +43,7 @@ return [
             'visibility' => 'public',
         ],
 
+        // 아마존 서버 사용시 s3 사용
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

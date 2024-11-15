@@ -15,8 +15,9 @@
                         게시판
                         </a>
                         <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">자유게시판</a></li>
-                        <li><a class="dropdown-item" href="#">질문게시판</a></li>
+                            @foreach ($myGlobalBoardsCategoryInfo as $item)
+                                <li><a class="dropdown-item" href="{{ route('boards.index', ['bc_type' => $item->bc_type]) }}">{{ $item->bc_name }}</a></li>   
+                            @endforeach
                         </ul>
                     </li>
                     </ul>

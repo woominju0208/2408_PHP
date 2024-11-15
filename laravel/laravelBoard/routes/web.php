@@ -22,9 +22,9 @@ Route::get('/', function () {
 });
 
 // 로그인페이지 /login 이동
-Route::get('/login', [UserController::class, 'goLogin'])->name('goLogin');
+Route::middleware('guest')->get('/login', [UserController::class, 'goLogin'])->name('goLogin');
 // 로그인 관련
-Route::post('/login', [UserController::class, 'login'])->name('login');
+Route::middleware('guest')->post('/login', [UserController::class, 'login'])->name('login');
 // 로그아웃
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
@@ -44,8 +44,8 @@ Route::get('/registration', [UserController::class, 'registration'])->name('get.
 Route::post('/registration', [UserController::class, 'storeRegistration'])->name('post.registration');
 
 
-// 작성페이지 이동
-Route::get('/boardInsert', [BoardController::class, 'create'])->name('get.boards');
-Route::post('/boardInsert', [BoardController::class, 'store'])->name('post.boards');
+// 작성페이지 이동 (위에 게시판관련 사용하면 된다. 다로 get,post 만들 필요 x)
+// Route::get('/boardInsert', [BoardController::class, 'create'])->name('get.boards');
+// Route::post('/boardInsert', [BoardController::class, 'store'])->name('post.boards');
 
 

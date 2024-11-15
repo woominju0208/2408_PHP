@@ -78,3 +78,12 @@ FROM boards
 WHERE deleted_at IS NULL
 ORDER BY created_at DESC, b_id DESC 
 ;
+
+
+SELECT *
+FROM boards
+WHERE deleted_at IS NULL
+		AND bc_type = '0'
+		AND u_id = '4'
+ORDER BY created_at DESC, b_id DESC 
+;
