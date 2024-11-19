@@ -4,12 +4,14 @@
   <!-- commit('모듈화/호출할 메소드명') -->
   <!-- <button @click="store.commit('board/addCount')">증가</button>  -->
 
-  <BoardListComponents />
+  <!-- <BoardListComponents /> -->
+  <TestComponents />
 
 </template>
 
 <script setup>
-import BoardListComponents from './components/BoardListComponents.vue';
+// import BoardListComponents from './components/BoardListComponents.vue';
+import TestComponents from './components/TestComponents.vue';
 
 
 // 반응형 데이터로 다루기 위해 computed 이용

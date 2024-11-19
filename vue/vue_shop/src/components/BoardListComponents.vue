@@ -92,6 +92,5 @@ const closeDetailModal = () => {
     .detailModalAnimation-leave-to {
         /* transform: translateX(4000px); */
         transform: scale(0);
-        
     } 
 </style>
