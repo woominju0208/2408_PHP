@@ -1,7 +1,31 @@
+<!-- vueinit 사용하면 기본 vue형태가 생성 -->
 <!-- vue는 쓰지 않는 불필요한건 다 지워줘야한다. 오류남 데이터바인딩이나 click요소를 넣고 안쓴다면 무조건 지워줘야 함 -->
 <template>
+  <!-- Component Event -->
+   <p>부모쪽 cnt : {{ cnt }}</p>
+
+   <EventComponent
+    :cnt = "cnt"
+    @eventAddCnt = "addCnt"
+    @eventAddCntParam = "addCntParam"
+    @eventReset = "reset"
+   />
+   <!-- 이벤트 이름(@eventAddCnt) 규칙 마음대로 해도 됨 -->
+
+   <hr>
+  <!-- 프롭스(Props) -->
+  <ChildComponent
+    :data = "data"
+    :count = "cnt"
+   >
+      <h3>부모쪽에서 작성한 것들</h3>
+      <p>아아아아아 {{ cnt }}</p>
+  </ChildComponent> 
+
+  <hr>
   <!-- 자식 컴포넌트 호출 -->
   <BoardComponent />
+  
 
 
   <!-- 리스트 랜더링(반복문) -->
@@ -68,10 +92,12 @@
 
 </template>
 
-<!-- setup 이라 선언해야 사용가능 -->
+<!-- Composition API 사용시 무조건 setup 이라 선언해야 사용가능 -->
 <script setup>
 // import로 자식 컴포넌트 호출
 import BoardComponent from './components/BoardComponent.vue';
+import ChildComponent from './components/ChildComponent.vue';
+import EventComponent from './components/EventComponent.vue';
 // ref, reactive 사용시 필수
 import { reactive, ref } from 'vue';
 
@@ -126,6 +152,15 @@ function changeAgeBlue() {
 
   function disCnt() {
     cnt.value--;
+  }
+
+  function addCntParam(num) {
+    cnt.value += num;
+  }
+
+  function reset() {
+    // cnt.value -= cnt.value;
+    cnt.value = 0;
   }
 
   function changeName() {
