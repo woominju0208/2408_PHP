@@ -26,10 +26,10 @@
             <img src="/img/cat3.jpg" alt="">
         </div>
         <div @click="openModal" class="item">
-            <img src="/img/cat2.jfif" alt="">
+            <img src="/img/cat2.jpg" alt="">
         </div>
         <div @click="openModal" class="item">
-            <img src="/img/cat1.webp" alt="">
+            <img src="/img/cat1.jpg" alt="">
         </div>
     </div>
 
