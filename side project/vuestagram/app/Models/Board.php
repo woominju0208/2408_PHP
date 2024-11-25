@@ -27,6 +27,6 @@ class Board extends Model
 
     public function user() {
         return $this->belongsTo(User::class, 'user_id');
-        // 다중인곳은 belongsTO
+        // 다중인곳은 belongsTo
     }
 }
