@@ -42,4 +42,11 @@ class User extends Authenticatable
     protected function serializeDate(\DateTimeInterface $date){
         return $date->format('Y-m-d H:i:s');
     }
+
+    // 연결자을 테이블 복수명  
+    public function boards() {
+        return $this->hasMany(Board::class, 'user_id');
+
+        // 한곳은 hasgMany 
+    }
 }
