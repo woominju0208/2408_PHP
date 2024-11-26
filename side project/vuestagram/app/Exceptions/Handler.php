@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use PDOException;
 use Throwable;
 
+
 class Handler extends ExceptionHandler
 {
     /**
@@ -68,6 +69,14 @@ class Handler extends ExceptionHandler
 
         $errInfo = $this->context()[$code];
 
+        // 커스텀 Exception 인스턴스 확인
+        if($th instanceof MyAuthException) {
+            // use 에 MyAuthException는 Handler와 같은 위치에 있기 때문에 use 안적어도 된다.(안적으면 같은 위치라고 인식)
+            $code = $th->getMessage();
+            $errInfo = $th->context()[$code];
+        }
+        
+        // exceptions는 기존의 있는것(AuthenticationException, PDOException)만 사용하거나 커스텀(MyAuthException 등등)만 사용하거나 하기
 
         // Response Data 만들기
         $responseData = [

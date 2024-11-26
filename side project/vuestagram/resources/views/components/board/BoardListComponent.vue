@@ -1,35 +1,8 @@
 <template>
     <!-- 리스트 -->
     <div class="board-list-box">
-        <div @click="openModal" class="item">
-            <img src="/img/cat10.jpg" alt="">
-        </div>
-        <div @click="openModal" class="item">
-            <img src="/img/cat9.jpg" alt="">
-        </div>
-        <div @click="openModal" class="item">
-            <img src="/img/cat8.jpg" alt="">
-        </div>
-        <div @click="openModal" class="item">
-            <img src="/img/cat7.jpg" alt="">
-        </div>
-        <div @click="openModal" class="item">
-            <img src="/img/cat6.jpg" alt="">
-        </div>
-        <div @click="openModal" class="item">
-            <img src="/img/cat5.jpg" alt="">
-        </div>
-        <div @click="openModal" class="item">
-            <img src="/img/cat4.jpg" alt="">
-        </div>
-        <div @click="openModal" class="item">
-            <img src="/img/cat3.jpg" alt="">
-        </div>
-        <div @click="openModal" class="item">
-            <img src="/img/cat2.jpg" alt="">
-        </div>
-        <div @click="openModal" class="item">
-            <img src="/img/cat1.jpg" alt="">
+        <div v-for="item in boardList" :key="item" @click="openModal" class="item">
+            <img :src="item.img">
         </div>
     </div>
 
@@ -48,7 +21,29 @@
      </div>
 </template>
 <script setup>
-import { ref } from 'vue';
+import { computed, onBeforeMount, ref } from 'vue';
+import { useStore } from 'vuex';
+
+const store = useStore();
+
+// computed는 콜백함수써야함
+const boardList = computed(() => store.state.board.boardList);
+
+// 백연결 (로그인후 보드리스트 출력)
+// 비포 마운트 처리
+onBeforeMount(() => {
+    if(store.state.board.boardList.length < 1) {
+        // action method 는 dispatch
+        store.dispatch('board/getBoardListPagination');
+    }
+});
+
+
+
+
+
+
+
 
 // ------------------------
 // 모달관련

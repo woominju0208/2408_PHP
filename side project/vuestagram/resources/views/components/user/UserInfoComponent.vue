@@ -6,7 +6,7 @@
             <h3>작성글 수 : {{ $store.state.user.userInfo.boards_count }}</h3>
         </div>
         <!-- router 로 이동처리 => 뷰 라우터 -->
-        <router-link to="/board/create"><button class="btn btn-submit">글작성</button></router-link>
+        <router-link to="/boards/create"><button class="btn btn-submit">글작성</button></router-link>
     </div>
 </template>
 

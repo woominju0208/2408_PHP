@@ -1,4 +1,5 @@
-import axios from "axios";
+// import axios from "axios";
+import axios from "../../axios";
 import router from "../../router";
 
 export default {
@@ -37,13 +38,14 @@ export default {
         login(context, userInfo) {
             const url = '/api/login';
             const data = JSON.stringify(userInfo);  // 객체 userInfo를 json형태로 시리얼라이징, http 통신으로 보낼수있는건 문자열 그래서 객체형식으로 보낼수 없음
-            const config = {
-                headers: {
-                    'Content-type': 'application/json'
-                }   // 받는 타입이 json 형태인걸 인식 /기존 http method의 post 는 form 형식으로 적용
-            }
+            // const config = {
+            //     headers: {
+            //         'Content-type': 'application/json'
+            //     }   // 받는 타입이 json 형태인걸 인식 /기존 http method의 post 는 form 형식으로 적용
+            // }
             
-            axios.post(url, data, config)
+            // axios.post(url, data, config)
+            axios.post(url, data)
             .then(response => {
                 // console.log(response);
                 // 토큰 저장(local storage)
@@ -55,7 +57,7 @@ export default {
                 context.commit('setUserInfo', response.data.data);
 
                 // 로그인 후 보드 리스트로 이동
-                router.replace('/board');
+                router.replace('/boards');
 
             })
             .catch(error => {
@@ -91,14 +93,34 @@ export default {
          */
         logout(context) {
             // TODO : 백엔드 처리 추가
+            const url = '/api/logout';
+            // 로그아웃시 백에 토큰을 보내야함
+            // 토큰을 파라미터에 담는게 아니라 헤더에 담음
+            const config = {
+                headers: {
+                    // 'Authorization': 'Bearer ' 형태 와 로컬스토리지에 액세스 토큰을 보내줌
+                    'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
+                }
+            }
 
-            localStorage.clear();   // clear: 로컬스토리지 초기화
+            // 백에 로그아웃 처리 완료후 프론트 처리
+            axios.post(url, null, config)
+            .then(response => {
+                alert('로그아웃 완료');
+            })
+            .catch(error => {
+                alert('문제가 발생하여 로그아웃 처리');
+            })
+            .finally(() => {    // finally 는 성공이든 실패든 무조건 로컬스토리지 초기화하고 로그아웃후 로그인 페이지로 이동
+                localStorage.clear();   // clear: 로컬스토리지 초기화
+    
+                // state 초기화
+                context.commit('setAuthFlg', false);
+                context.commit('setUserInfo', {});
+    
+                router.replace('/login');
+            });
 
-            // state 초기화
-            context.commit('setAuthFlg', false);
-            context.commit('setUserInfo', {});
-
-            router.replace('/login');
         },
 
     },

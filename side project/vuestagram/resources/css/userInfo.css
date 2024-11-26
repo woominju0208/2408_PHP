@@ -6,9 +6,9 @@
 
 .user-info-box img {
     width: 70px;
-    margin: 0 10px;
+    margin: 0 20px;
     border: 2px solid#000;
-    border-radius: 50px;
+    border-radius: 50%;
     padding: 2px;
 }
 

@@ -21,6 +21,17 @@ class MyEncrypt {
      }
 
      /**
+      * base64 URL 디코드
+      *
+      * @param string $base64 base64 URL encode
+      *
+      * @return string $json
+      */
+      public function base64UrlDecode(string $base64) {
+         return base64_decode(strtr($base64, '-_', '+/'));
+      }
+
+     /**
       * 솔트(특정 길이 만큼 랜덤한 문자열) 생성
       * 
       * @param inst $saltLength
@@ -44,5 +55,17 @@ class MyEncrypt {
          // 혹시모를 해킹후 복구화를 할수있기 대문에 $alg, $str을 hash 암호화 한 다음 뒤에 $salt를 첨가해준다.
          // salt의 길이는 꼭 기억
          return hash($alg, $str).$salt;
+      }
+
+      /**
+       * 특정 길이의 솔트를 제거한 문자열을 반환
+       * 
+       * @param string $signature 솔트 포함된 시그니처
+       * @param int $saltLength 솔트 길이
+       * 
+       * @return string 솔트 제거한 문자열
+       */
+      public function subSalt(string $signature, int $saltLength) {
+         return mb_substr($signature, 0, (-1 * $saltLength));
       }
 }
