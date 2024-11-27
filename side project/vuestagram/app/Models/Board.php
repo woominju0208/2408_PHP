@@ -26,7 +26,7 @@ class Board extends Model
     }
 
     public function user() {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id')->select('user_id', 'name');     // select추가로 연관배열에 정의한 'name'만 들고옴(연결 on 컬럼 필수!)
         // 다중인곳은 belongsTo
     }
 }

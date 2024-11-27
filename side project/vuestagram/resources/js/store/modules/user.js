@@ -22,6 +22,10 @@ export default {
         setUserInfo(state, userInfo) {
             state.userInfo = userInfo;
         },
+        setUserInfoBoardsCount(state) {
+            state.userInfo.boards_count++;
+            localStorage.setItem('userInfo', JSON.stringify(state.userInfo));
+        },
     },
     actions: {
         // 비동기처리는 actions에서(서버와 관련된 ajax , axios)
