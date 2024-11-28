@@ -9,4 +9,5 @@ createApp({
         AppComponent,
     }
 })
+.use(router)
 .mount('#app');
