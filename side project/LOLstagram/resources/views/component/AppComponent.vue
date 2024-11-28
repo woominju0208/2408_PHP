@@ -5,5 +5,5 @@
 
 </script>
 <style>
-    
+    @import url('../../css/common.css');
 </style>
