@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\MyAuthException;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Auth\AuthenticationException;
@@ -73,5 +74,40 @@ class AuthController extends Controller
         ];
 
         return response()->json($responseData, 200);
+    }
+
+    /**
+     * 토큰 재발급 처리
+     * @param Illuminate\Request $request
+     * 
+     * @return response JSON
+     */
+    public function reissue(Request $request) {
+        // 페이로드에서 유저 PK 획득
+        $userId = MyToken::getValueInPayload($request->bearerToken(), 'idt');
+        // 우저정보 획득
+        $userInfo = User::find($userId);
+      
+        // 리프래시 토큰 비교
+        // 유저가 보낸 리프래시와 db에 저장된 리프래시 토큰이 같지 않으면 에러
+        if($request->bearerToken() !== $userInfo->refresh_token) {
+            throw new MyAuthException('E22');
+        }
+
+        // 토큰 발급
+        list($accessToken, $refreshToken) = MyToken::createTokens($userInfo);
+
+        // 리프래시 토큰 저장
+        MyToken::updateRefreshToken($userInfo, $refreshToken);
+        
+        $responseData = [
+            'success' => true
+            ,'msg' => '토큰 재발급 성공'
+            ,'accessToken' => $accessToken
+            ,'refreshToken' => $refreshToken
+        ];
+
+        return response()->json($responseData, 200);
+        // 진행: 리프래시 토큰 비교 후 토큰을 발급하고 리프래시 토큰 저장하고 성공시 성공리턴 해줌
     }
 }

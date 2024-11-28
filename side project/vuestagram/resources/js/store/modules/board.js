@@ -42,36 +42,41 @@ export default {
          */
         // 관습적으로 앞에 get은 getter쪽만 붙이는게 맞다.
         boardListPagination(context) {
-            // 디바운싱 처리 시작
-            if(context.state.controllFlg && !context.state.lastPageFlg) {
-                context.commit('setControllFlg', false);    
-
-                const url = '/api/boards?page=' + context.getters['getNextPage'];
-                // 로그인한 유저가 보드정보를 가져와야 하니 액세스 토큰을 가져옴
-                const config = {
-                    headers: {
-                        'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
+            context. dispatch('user/chkTokenAndContinueProcess',
+                () => {
+                    // 디바운싱 처리 시작
+                    if(context.state.controllFlg && !context.state.lastPageFlg) {
+                        context.commit('setControllFlg', false);    
+        
+                        const url = '/api/boards?page=' + context.getters['getNextPage'];
+                        // 로그인한 유저가 보드정보를 가져와야 하니 액세스 토큰을 가져옴
+                        const config = {
+                            headers: {
+                                'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
+                            }
+                        }
+        
+                        axios.get(url, config)
+                        .then(response => {
+                            console.log('게시글 요청',response.data.boardList);
+                            context.commit('setBoardList', response.data.boardList.data);
+                            context.commit('setPage', response.data.boardList.current_page);
+                            // 더이상 불러올 데이터 없을시, 불필요한 요청 안보내기 위한 처리 
+                            if(response.data.boardList.current_page >= response.data.boardList.last_page) {
+                                // 마지막 페이지 일 경우 플래그 true
+                                context.commit('setLastPageFlg', true);
+                            }
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        })
+                        .finally(() => {
+                            context.commit('setControllFlg', true); // flg true처리는 axios 내부에 적용해야한다.(비동기 처리)
+                        });
                     }
-                }
+                }, 
+                {root: true});
 
-                axios.get(url, config)
-                .then(response => {
-                    console.log('게시글 요청',response.data.boardList);
-                    context.commit('setBoardList', response.data.boardList.data);
-                    context.commit('setPage', response.data.boardList.current_page);
-                    // 더이상 불러올 데이터 없을시, 불필요한 요청 안보내기 위한 처리 
-                    if(response.data.boardList.current_page >= response.data.boardList.last_page) {
-                        // 마지막 페이지 일 경우 플래그 true
-                        context.commit('setLastPageFlg', true);
-                    }
-                })
-                .catch(error => {
-                    console.log(error);
-                })
-                .finally(() => {
-                    context.commit('setControllFlg', true); // flg true처리는 axios 내부에 적용해야한다.(비동기 처리)
-                });
-            }
         },
         /**
          * 게시글 상세 정보 획득
@@ -79,66 +84,77 @@ export default {
          * @param {*} context
          * @param {int} id
          */
+        // 다른 모듈 사용법(액션메소드기 때메 dispatch) (사용할 모듈, 실행할 콜백함수, root지정)
         showBoard(context, id) {
-            const url = '/api/boards/' + id;     // id 는 세그먼트 파라미터
-            const config = {
-                headers: {
-                    'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
-                }
-            }
+            context.dispatch('user/chkTokenAndContinueProcess',
+                 () => {
+                     const url = '/api/boards/' + id;     // id 는 세그먼트 파라미터
+                     const config = {
+                         headers: {
+                             'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
+                         }
+                     }
+         
+                     axios.get(url, config)
+                     .then(response => {
+                         // console.log(response);
+                         context.commit('board/setBoardDetail', response.data.board, {root: true});
+                     })
+                     .catch(error => {
+                         console.error(error);
+                     });
+                 }
+                 , {root: true});
 
-            axios.get(url, config)
-            .then(response => {
-                // console.log(response);
-                context.commit('setBoardDetail', response.data.board);
-            })
-            .catch(error => {
-                console.error(error);
-            });
         },
 
         /**
          * 게시글 작성
          */
         storeBoard(context, data) {
-            // 디바운싱 조건
-            if(context.state.controllFlg) {
-                // 처음 false로 설정후 데이터 생성 실행 => 데이터가 하나만 들어가고 연결까지 비활성화
-                context.commit('setControllFlg', false);
-
-                const url = '/api/boards';
-                const config = {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                        'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
+            context.dispatch('user/chkTokenAndContinueProcess',
+                () => {
+                    // 디바운싱 조건
+                    if(context.state.controllFlg) {
+                        // 처음 false로 설정후 데이터 생성 실행 => 데이터가 하나만 들어가고 연결까지 비활성화
+                        context.commit('setControllFlg', false);
+        
+                        const url = '/api/boards';
+                        const config = {
+                            headers: {
+                                'Content-Type': 'multipart/form-data',
+                                'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
+                            }
+                        };
+                        // form data 생성
+                        const formData = new FormData();
+                        // 전달 데이터 셋팅
+                        formData.append('content', data.content);
+                        formData.append('file', data.file);
+            
+            
+                        axios.post(url, formData, config)
+                        .then(response => {
+                            // unshift : 배열 제일 앞으로 보냄
+                            context.commit('setBoardListUnshift', response.data.board);
+        
+                            // 다른 모듈 접근(user.js 모듈 접근)
+                            context.commit('user/setUserInfoBoardsCount', null, {root: true});
+                            // 2번째 파라미터는 보내줄 데이터로 보내줄게 없어서 null로 설정
+                            // 3번째 파라미터로 root: true로 하면 무조건 store 최상위로 붙는다. state,mutations붙을수 있음(dispatch, commit)
+            
+                            router.replace('/boards');
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        })
+                        .finally(() => {
+                            // 실행 완료후 true로 전환
+                            context.commit('setControllFlg', true);    
+                        });
                     }
-                };
-                // form data 생성
-                const formData = new FormData();
-                formData.append('content', data.content);
-                formData.append('file', data.file);
-    
-    
-                axios.post(url, formData, config)
-                .then(response => {
-                    // unshift : 배열 제일 앞으로 보냄
-                    context.commit('setBoardListUnshift', response.data.board);
-
-                    // 다른 모듈 접근(user.js 모듈 접근)
-                    context.commit('user/setUserInfoBoardsCount', null, {root: true});
-                    // 2번째 파라미터는 보내줄 데이터로 보내줄게 없어서 null로 설정
-                    // 3번째 파라미터로 root: true로 하면 무조건 store 최상위로 붙는다. state,mutations붙을수 있음(dispatch, commit)
-    
-                    router.replace('/boards');
-                })
-                .catch(error => {
-                    console.error(error);
-                })
-                .finally(() => {
-                    // 실행 완료후 true로 전환
-                    context.commit('setControllFlg', true);    
-                });
-            }
+                }
+                ,{root: true});
         },
     },
  

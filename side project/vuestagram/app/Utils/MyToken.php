@@ -55,7 +55,7 @@ class MyToken {
      * @return bool true
      */
     public function chkToken(string|null $token) {
-        Log::debug('*****************chkToken start*****************');
+        // Log::debug('*****************chkToken start*****************');
         // 토큰 존재 유무 체크
         if(empty($token)) {
             throw new MyAuthException('E20');
@@ -74,7 +74,7 @@ class MyToken {
             throw new MyAuthException('E21');
         }
 
-        Log::debug('*****************chkToken end*****************');
+        // Log::debug('*****************chkToken end*****************');
         return true;
     }
 
