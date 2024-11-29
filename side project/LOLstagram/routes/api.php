@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::post('/login', function() {
+//     return '로그인 성공';
+// });
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 
-Route::get('/boards', [AuthController::class, 'boards'])->name('boards.index');
+// Route::get('/boards', [AuthController::class, 'boards'])->name('boards.index');

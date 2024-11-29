@@ -20,6 +20,7 @@
         </div>
     </header>
     <main>
+        <UserInfoComponent />
         <div class="container">
             <!-- vue Router : 뷰에서 패스를 통해 특정 컴포넌트를 띄어줘야 함 -->
             <router-view></router-view>
@@ -30,6 +31,7 @@
     </footer>
 </template>
 <script setup>
+import UserInfoComponent from './user/UserInfoComponent.vue';
 
 </script>
 <style>

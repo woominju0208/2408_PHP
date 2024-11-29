@@ -3,6 +3,7 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(100px, 1fr));
     gap: 5px;
+    margin-top: 50px;
 }
 .board-list-box > .item {
     display: flex;

@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class UserRequest extends FormRequest
 {
@@ -16,16 +18,25 @@ class UserRequest extends FormRequest
     {
         // login 유효성 검사
         $rules = [
-            'account' => ['requierd', 'between:5,20', 'regex:/^[0-9a-zA-Z]+$/']
-            ,'password' => ['requierd', 'between:5,20', 'regex:/^[0-9a-zA-Z!@]+$/']
+            'account' => ['required', 'between:5,20', 'regex:/^[0-9a-zA-Z]+$/']
+            ,'password' => ['required', 'between:5,20', 'regex:/^[0-9a-zA-Z!@]+$/']
         ];
 
         // routeIs('route name') : login 인지 아닌지 체크
         if($this->routeIs('auth.login')) {
             // 로그인
-            $rules['account'][] = 'exists:users.account';
+            $rules['account'][] = 'exists:users,account';
         };
 
         return $rules;
+    }
+    
+    protected function failedValidation(Validator $validator) {
+        $response = response()->json([
+            'success' => false,
+            'message' => '유효성 체크 오류',
+            'data' => $validator->errors(),
+        ], 422);
+        throw new HttpResponseException($response);
     }
 }

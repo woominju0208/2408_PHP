@@ -2,7 +2,10 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Log;
+use PDOException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -34,8 +37,41 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function (Throwable $e) {
-            //
+        $this->reportable(function (Throwable $th) {
+           
         });
+    }
+    // 예외 및 에러났을때 호출
+    public function report(Throwable $th) {
+        Log::info("Report: ". $th->getMessage());
+    }
+
+    public function render($request, Throwable $th) {
+        // 예외 코드 초기화
+        $code = 'E99';
+        
+        // 인스턴스 확인후 예외정보 처리
+        if($th instanceof AuthenticationException) {
+            $code = 'E01';
+        } else if($th instanceof PDOException) {
+            $code = 'E80';
+        }   
+
+        $errorInfo = $this->context()[$code];
+        $responseData = [
+            'success' => false
+            ,'code' => $code
+            ,'msg' => $errorInfo['msg']
+        ];
+        return response()->json($responseData, $errorInfo['status']);
+    }
+
+
+    public function context() {
+        return [
+            'E01' => ['status' => 401, 'msg' => '인증실패']
+            ,'E80' => ['status' => 500, 'msg' => 'DB 에러 발생 '] 
+            ,'E99' => ['status' => 500, 'msg' => '시스템 에러 발생']  
+        ];
     }
 }

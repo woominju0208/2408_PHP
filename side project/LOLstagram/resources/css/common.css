@@ -68,6 +68,7 @@ a:hover {
     background-color: #fff;
 }
 
+
 /* Form */
 .form-box {
     display: grid;
@@ -75,9 +76,10 @@ a:hover {
     gap: 10px;
     place-items: center;
     margin: 20px auto;
-    width: 300px;
+    width: 700px;
     border: 1px solid #c5c5c5;
-    padding: 0 20px 20px;
+    padding: 100px 20px;
+    margin-top: 50px;
 }
 .form-box > * {
     width: 80%;
