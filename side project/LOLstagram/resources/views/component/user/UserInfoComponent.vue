@@ -1,9 +1,10 @@
 <template>
     <div class="user-info-box">
-        <img src="/profile/profile1.webp">
+        <!-- {{ $store.state.user.userInfo }} -->
+        <img src="/profile/profile1.jpg" >
         <div class="user-info-content">
-            <h2>유저아이디</h2>
-            <h3>작성글 수 : 999</h3>
+            <h2>{{ $store.state.user.userInfo.account }}</h2>
+            <h3>작성글 수 : {{ $store.state.user.userInfo.boards_count }}</h3>
         </div>
         <router-link to="/boards/create"><button class="btn btn-submit">글작성</button></router-link>
     </div>

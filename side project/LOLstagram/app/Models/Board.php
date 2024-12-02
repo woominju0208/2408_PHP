@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+
 class Board extends Model
 {
     use HasFactory, SoftDeletes;
@@ -25,5 +26,8 @@ class Board extends Model
         return $date->format('Y-m-d H:i:s');
     }
 
+    public function user() {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
 }

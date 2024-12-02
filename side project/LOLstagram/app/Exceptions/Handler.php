@@ -58,6 +58,13 @@ class Handler extends ExceptionHandler
         }   
 
         $errorInfo = $this->context()[$code];
+
+        // 커스텀 Exception인스턴스 확인
+        if($th instanceof MyAuthException) {
+            $code = $th->getMessage();
+            $errorInfo = $th->context()[$code];
+        };
+
         $responseData = [
             'success' => false
             ,'code' => $code

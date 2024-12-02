@@ -1,30 +1,10 @@
 <template>
     <div class="board-list-box">
-        <div @click="openModal" class="item">
-            <img src="/img/skin1.jpg">
-        </div>
-        <div @click="openModal" class="item">
-            <img src="/img/skin2.jpg">
-        </div>
-        <div @click="openModal" class="item">
-            <img src="/img/skin3.jpg">
-        </div>
-        <div @click="openModal" class="item">
-            <img src="/img/skin4.jpg">
-        </div>
-        <div @click="openModal" class="item">
-            <img src="/img/skin5.jpg">
-        </div>
-        <div @click="openModal" class="item">
-            <img src="/img/skin6.jpg">
-        </div>
-        <div @click="openModal" class="item">
-            <img src="/img/skin7.jpg">
-        </div>
-        <div @click="openModal" class="item">
-            <img src="/img/skin8.jpg">
+        <div v-for="item in boardList" :key="item" @click="openModal" class="item">
+            <img :src="item.img">
         </div>
     </div>
+
     <div v-show="modalFlg" class="board-detail-box">
         <div class="item">
             <img src="/img/skin1.jpg">
@@ -40,7 +20,20 @@
 </template>
 <script setup>
 
-import { ref } from 'vue';
+import { computed, onBeforeMount, ref } from 'vue';
+//  useStore 해야 store. ~ 가져올수 있음
+import { useStore } from 'vuex';
+
+const store = useStore();
+const boardList = computed(() => store.state.board.boardList);
+
+onBeforeMount(() => {
+    store.dispatch('board/getBoardListPagination');
+});
+
+// ----------------
+// modal 관련
+// ----------------
     // modal 숨기기
     const modalFlg = ref(false);
     // modal 열기

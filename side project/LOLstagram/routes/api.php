@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BoardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,5 +20,12 @@ use Illuminate\Support\Facades\Route;
 //     return '로그인 성공';
 // });
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::middleware('my.auth')->group(function() {
+    Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+    Route::post('/reissue', [AuthController::class, 'reissue'])->name('auth.reissue');
 
-// Route::get('/boards', [AuthController::class, 'boards'])->name('boards.index');
+    // 게시판 관련
+    Route::get('/boards', [BoardController::class, 'index'])->name('boards.index');
+
+});
+

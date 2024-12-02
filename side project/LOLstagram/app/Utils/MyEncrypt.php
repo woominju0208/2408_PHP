@@ -9,6 +9,11 @@ class MyEncrypt {
     public function base64UrlEncode(string $json) {
         return rtrim(strtr(base64_encode($json), '+/', '-_'), '=');
     }
+    
+    // base64UrlDecode 생성
+    public function base64UrlDecode(string $base64) {
+        return base64_decode(strtr($base64, '-_', '+/'));
+    }
 
     // 솔트(특정 길이 만큼 랜덤한 문자열) 생성
     public function makeSalt($saltLength) {
@@ -19,4 +24,10 @@ class MyEncrypt {
     public function hashWithSalt(string $alg, string $str, string $salt) {
         return hash($alg, $str).$salt;
     }
+
+    // 특정길이의 솔트를 제거한 문자열을 반환
+    public function subSalt(string $signature, int $saltLength) {
+        return mb_substr($signature, 0, (-1 * $saltLength));
+    }
+
 }
