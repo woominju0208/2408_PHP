@@ -14,6 +14,10 @@ export default {
         setUserInfo(state, flg) {
             state.userInfo = flg
         },
+        setUserInfoBoardsCount(state) {
+            state.userInfo.boards_count++;
+            localStorage.setItem('userInfo', JSON.stringify(state.userInfo));
+        },
     },
     actions: {
         // 로그인 처리

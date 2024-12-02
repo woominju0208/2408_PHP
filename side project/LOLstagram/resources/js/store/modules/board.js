@@ -6,6 +6,9 @@ export default {
     state: () => ({
         boardList: [],
         page: 0,
+        boardDetail: null,
+        controllFlg: true,
+        lastPageFlg: false,
     }),
     mutations: {
         setBoardList(state, boardList) {
@@ -17,16 +20,28 @@ export default {
         setLastPageFlg(state, flg) {
             state.lastPageFlg = flg;
         },
+        setControllFlg(state, flg) {
+            state.controllFlg = flg;
+        },
+        setBoardDetail(state, board) {
+            state.boardDetail = board;
+        },
+        setBoardListUnshift(state, board) {
+            state.boardList.unshift(board);
+        },
+
 
     },
     actions: {
         // 게시글 획득
-        getBoardListPagination(context) {
+        boardListPagination(context) {
             // 디바운싱 처리 시작
-            // 클릭으로 페이지 요청 한번 보냈을때 false로 변환(여러번 클릭 방지)
-            // TODO: 디바운싱 처리 
+            // 클릭으로 페이지 요청 한번 보냈을때 false로 변환(여러번 클릭 방지) 
+            if(context.state.controllFlg && !context.state.lastPageFlg) {
+                context.commit('setControllFlg', false);
+            }
 
-            const url = '/api/boards?page=' + context.state.page;
+            const url = '/api/boards?page=' + context.getters['getNextPage'];
             const config = {
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('accessToken'), 
@@ -45,10 +60,63 @@ export default {
             })
             .catch(error => {
                 console.log(error);
+            })
+            .finally(() => {
+                context.commit('setControllFlg', true);
             });
         },
+        showBoard(context, id) {
+            const url = '/api/boards/' + id;
+            const config = {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
+                }
+            }
+
+            axios.get(url, config)
+            .then(response => {
+                // console.log(response);
+                // root:true 가 왜들어가지...
+                context.commit('board/setBoardDetail', response.data.board, {root: true});
+            })
+            .catch(error => {
+                console.log(error);
+            }); 
+        },
+        storeBoard(context, data) {
+            const url = '/api/boards';
+            const config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': 'Bearer ' +localStorage.getItem('accessToken'),
+                }
+            };
+
+            // form data  생성
+            const formData = new FormData();
+            formData.append('content', data.content);
+            formData.append('file', data.file);
+
+            axios.post(url, formData, config)
+            .then(response => {
+                // 글작성 후 최상단 위치
+                context.commit('setBoardListUnshift', response.data.board);
+                // 다른 모듈 접근
+                context.commit('user/setUserInfoBoardsCount', null, {root: true});
+
+                router.replace('/boards');
+            })
+            .catch(error => {
+                console.log(error);
+            })
+            .finally(() => {
+                context.commit('setControllFlg', true);
+            });
+        }
     },
     getters: {
-
+        getNextPage(state) {
+            return state.page + 1;
+        },
     }
 }

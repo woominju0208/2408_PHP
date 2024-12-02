@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Board;
+use MyToken;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BoardController extends Controller
 {
@@ -20,13 +22,37 @@ class BoardController extends Controller
         return response()->json($responseData, 200);
     }
 
-    // TODO: show, store 메소드 생성
     public function show($id) {
         $board = Board::with('user')->find($id);
 
         $responseData = [
             'success' => true
             ,'msg' => '상세 정보 획득 성공'
+            ,'board' => $board->toArray()
+        ];
+
+        return response()->json($responseData, 200);
+    }
+
+    public function store(Request $request) {
+        DB::beginTransaction();
+        // insert data 생성
+        $insertData = $request->only('content');
+        $insertData['user_id'] = MyToken::getValueInPayload($request->bearerToken(), 'idt');
+        $insertData['like'] = 0;
+        $insertData['img'] = '/'.$request->file('file')->store('img');
+
+        if(!($request === 1)) {
+            DB::rollBack();
+        }
+        DB::commit();
+
+        // insert
+        $board = Board::create($insertData);
+
+        $responseData = [
+            'success' => true
+            ,'msg' => '게시글 작성 성공'
             ,'board' => $board->toArray()
         ];
 

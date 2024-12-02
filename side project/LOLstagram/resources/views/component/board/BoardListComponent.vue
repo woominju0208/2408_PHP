@@ -1,19 +1,20 @@
 <template>
     <div class="board-list-box">
-        <div v-for="item in boardList" :key="item" @click="openModal" class="item">
+        <!-- (item.board_id) 로 모달 오픈시 board_id 를 보내주기 -->
+        <div v-for="item in boardList" :key="item" @click="openModal(item.board_id)" class="item">
             <img :src="item.img">
         </div>
     </div>
 
     <div v-show="modalFlg" class="board-detail-box">
-        <div class="item">
-            <img src="/img/skin1.jpg">
+        <div v-if="boardDetail" class="item">
+            <img :src="boardDetail.img">
             <hr>
-            <p>내용내용</p>
+            <p>{{ boardDetail.content }}</p>
             <hr>
             <div class="etc-box">
-                <span>작성자</span>
-                <button @click="closeModal">닫기</button>
+                <span>{{ boardDetail.user.name }}</span>
+                <button @click="closeModal" class="btn btn-header btn-bg-black">닫기</button>
             </div>
         </div>
     </div>
@@ -25,10 +26,15 @@ import { computed, onBeforeMount, ref } from 'vue';
 import { useStore } from 'vuex';
 
 const store = useStore();
+
+// 보드상세 정보
+const boardDetail = computed(() => store.state.board.boardDetail);
 const boardList = computed(() => store.state.board.boardList);
 
 onBeforeMount(() => {
-    store.dispatch('board/getBoardListPagination');
+    if(store.state.board.boardList.length < 1) {
+        store.dispatch('board/boardListPagination');
+    }
 });
 
 // ----------------
@@ -37,7 +43,8 @@ onBeforeMount(() => {
     // modal 숨기기
     const modalFlg = ref(false);
     // modal 열기
-    const openModal = () => {
+    const openModal = (id) => {
+        store.dispatch('board/showBoard', id);
         modalFlg.value = true;
     };
     // modal 닫기
@@ -45,6 +52,24 @@ onBeforeMount(() => {
         modalFlg.value = false;
     };
 
+// ----------------
+// 스크롤 이벤트
+// ----------------
+const boardScollEvent = () => {
+    // 디바운싱
+    if(store.state.board.controllFlg) {
+        const docHeight = document.documentElement.scrollHeight;
+        const winHeight = window.innerHeight;
+        const nowHeight = window.scrollY;
+        const viewHeight = docHeight - winHeight;
+
+        // console.log(viewHeight, nowHeight);
+        if(viewHeight <= nowHeight) {
+            store.dispatch('board/boardListPagination');
+        }
+    }
+}
+window.addEventListener('scroll', boardScollEvent);
 
 </script>
 <style>

@@ -26,6 +26,8 @@ Route::middleware('my.auth')->group(function() {
 
     // 게시판 관련
     Route::get('/boards', [BoardController::class, 'index'])->name('boards.index');
+    Route::get('/boards/{id}', [BoardController::class, 'show'])->name('boards.show');
+    Route::post('/boards', [BoardController::class, 'store'])->name('boards.store');
 
 });
 
