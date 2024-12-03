@@ -6,6 +6,7 @@ use App\Models\Board;
 use MyToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Expr\Print_;
 
 class BoardController extends Controller
 {
@@ -42,7 +43,7 @@ class BoardController extends Controller
         $insertData['like'] = 0;
         $insertData['img'] = '/'.$request->file('file')->store('img');
 
-        if(!($request === 1)) {
+        if(!(count([$request === 1]))) {
             DB::rollBack();
         }
         DB::commit();
@@ -57,5 +58,22 @@ class BoardController extends Controller
         ];
 
         return response()->json($responseData, 200);
+    }
+
+    // 삭제 처리
+    public function destroy($id) {
+        $board = Board::with('user')->find($id);
+        // $boardUserId = MyToken::getValueInPayload($request->bearerToken(),'idt');
+        $board->delete();
+        $responseData = [
+            'success' => true
+            ,'msg' => '게시글 삭제 성공'
+            // ,'board' => $board->toArray()
+            // ,'boardUserId' -> collect($boardUserId)->map(function($boardUserId) {
+            //     return (array) $boardUserId;
+            // })->toArray()
+        ];
+
+        response()->json($responseData, 200);
     }
 }

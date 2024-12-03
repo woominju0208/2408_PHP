@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BoardController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,9 @@ use Illuminate\Support\Facades\Route;
 //     return '로그인 성공';
 // });
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
+// 회원가입 (인증처리 middleware x)
+Route::post('/registration', [UserController::class, 'store'])->name('user.store');
+
 Route::middleware('my.auth')->group(function() {
     Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
     Route::post('/reissue', [AuthController::class, 'reissue'])->name('auth.reissue');
@@ -28,6 +32,9 @@ Route::middleware('my.auth')->group(function() {
     Route::get('/boards', [BoardController::class, 'index'])->name('boards.index');
     Route::get('/boards/{id}', [BoardController::class, 'show'])->name('boards.show');
     Route::post('/boards', [BoardController::class, 'store'])->name('boards.store');
+
+    // 삭제처리
+    Route::delete('/boards/{id}', [BoardController::class, 'destroy'])->name('boards.destroy');
 
 });
 

@@ -67,6 +67,10 @@ a:hover {
     color: #000;
     background-color: #fff;
 }
+.btn-bg-red {
+    color: #fff;
+    background-color: #ff0000;
+}
 
 
 /* Form */

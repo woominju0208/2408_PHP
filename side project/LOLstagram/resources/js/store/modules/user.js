@@ -90,6 +90,38 @@ export default {
             });
         },
 
+        // registration 처리
+        registration(context, userInfo) {
+            const url = '/api/registration';
+            const config = {
+                headers: {
+                    'Content-Type' : 'multipart/form-data',
+                }
+            };
+
+            // form data  생성
+            const formData = new FormData();
+            formData.append('account', userInfo.account);
+            formData.append('password', userInfo.password);
+            formData.append('password_chk', userInfo.password_chk);
+            formData.append('name', userInfo.name);
+            formData.append('gender', userInfo.gender);
+            formData.append('profile', userInfo.profile);
+
+            // axios 처리
+            axios.post(url,formData, config)
+            .then(response => {
+                alert('회원가입 성공!\n가입하신 계정으로 로그인 해 주세요.');
+                router.replace('/login');
+            })
+            .catch(error => {
+                alert('회원가입 실패');
+            });
+
+
+
+        }
+
     },
     getters: {
 
